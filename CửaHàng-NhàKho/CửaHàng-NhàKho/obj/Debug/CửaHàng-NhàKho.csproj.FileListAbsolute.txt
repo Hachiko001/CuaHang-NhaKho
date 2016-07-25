@@ -1,0 +1,24 @@
+C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe.config
+C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe.config
+C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe
+C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.pdb
+C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csprojResolveAssemblyReference.cache
+C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.FormDangNhap.resources
+C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.chitiethangForm.resources
+C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.cuahangForm.resources
+C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.nhakhoForm.resources
+C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.Properties.Resources.resources
+C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csproj.GenerateResource.Cache
+C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.exe
+C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.pdb
+C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.exe
+C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.pdb
+C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe
+C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.pdb
+C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.FormDangNhap.resources
+C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.chitiethangForm.resources
+C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.cuahangForm.resources
+C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.nhakhoForm.resources
+C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.Properties.Resources.resources
+C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csproj.GenerateResource.Cache
+C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csprojResolveAssemblyReference.cache
