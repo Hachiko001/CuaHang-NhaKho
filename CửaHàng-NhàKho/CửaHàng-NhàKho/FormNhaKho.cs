@@ -13,7 +13,7 @@ namespace CửaHàng_NhàKho
     public partial class nhakhoForm : Form
     {
         List<HangHoa> listHang = new List<HangHoa>();
-
+        HangHoa selectedProd;
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
@@ -59,7 +59,7 @@ namespace CửaHàng_NhàKho
                         A.Giaban = Convert.ToSingle(reader.GetValue(3));
                         A.Gianhap = Convert.ToSingle(reader.GetValue(4));
                         A.Nhasx = reader.GetString(5);
-                        A.Hinhanh = reader.GetString(6);
+                        A.Hinhanh = "Resources//Hanghoa//" + A.Mahang + ".jpg";
                         listHang.Add(A);
                         MessageBox.Show(A.Ten + ".jpg", "Text");
                     }
@@ -82,13 +82,15 @@ namespace CửaHàng_NhàKho
                 PictureBox newBox = new PictureBox();
                 newBox.Size = new System.Drawing.Size(100, 94);
                 newBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                newBox.ImageLocation = "Resources//Hanghoa//"+A.Mahang+".jpg";
+                newBox.ImageLocation = A.Hinhanh;
                 MessageBox.Show(newBox.ImageLocation, "Text");
                 newBox.MouseHover += new EventHandler(picHang_Hover);
                 newBox.MouseLeave += new EventHandler(picHang_Leave);
+                newBox.MouseClick += new MouseEventHandler(picHang_Click);
+                newBox.MouseDoubleClick += new MouseEventHandler(picHang_DoubleClick);
                 newBox.Tag = A.Mahang;
                 hanghoaPnl.Controls.Add(newBox);
-
+                
             }
         }
 
@@ -123,6 +125,46 @@ namespace CửaHàng_NhàKho
             motaLbl.MaximumSize = new Size(170, 130);
 
         }
+        
+
+
+        private void hanghoaPnl_Paint(object sender, PaintEventArgs e)
+        {
+            hanghoaPnl.AutoScroll = true;
+        }
+
+        // cài đặt cho hình ảnh hàng hóa
+        private void picHang_Hover(object sender,EventArgs e)
+        {
+            PictureBox picBox = sender as PictureBox;
+            picBox.ImageLocation = "Resources//addsign2.png";
+        }
+        private void picHang_Leave(object sender, EventArgs e)
+        {
+            PictureBox picBox = sender as PictureBox;
+            string direc = "Resources//Hanghoa//" + picBox.Tag + ".jpg";
+            picBox.Image = Image.FromFile(direc);
+        }
+        private void picHang_Click(object sender, EventArgs e)
+        {
+            PictureBox picBox = sender as PictureBox;
+
+            picBox.BorderStyle = BorderStyle.FixedSingle;
+        }
+        private void picHang_DoubleClick(object sender, EventArgs e)
+        {
+            PictureBox picBox = sender as PictureBox;
+            picBox.ImageLocation = "Resources//addsign2.png";
+        }
+
+
+        // cài đặt cho nút thêm hàng
+        private void themhangPic_Click(object sender, EventArgs e)
+        {
+            Form chitiethangForm = new chitiethangForm(this);
+            chitiethangForm.Show();
+            
+        }
         private void themhangPic_Hover(object sender, EventArgs e)
         {
             if (tooltipused == false)
@@ -138,32 +180,7 @@ namespace CửaHàng_NhàKho
         }
 
 
-        private void hanghoaPnl_Paint(object sender, PaintEventArgs e)
-        {
-            hanghoaPnl.AutoScroll = true;
-        }
-
-
-        private void picHang_Hover(object sender,EventArgs e)
-        {
-            PictureBox picBox = sender as PictureBox;
-            picBox.ImageLocation = "Resources//addsign2.png";
-        }
-        private void picHang_Leave(object sender, EventArgs e)
-        {
-            PictureBox picBox = sender as PictureBox;
-            picBox.Image = Image.FromFile("Resources//addsign.png");
-        }
-
-        private void themhangPic_Click(object sender, EventArgs e)
-        {
-            Form chitiethangForm = new chitiethangForm(this);
-            chitiethangForm.Show();
-            
-        }
-
-
-
+        // cài đặt nút xóa hàng
         private void xoahangPic_Click(object sender, EventArgs e)
         {
 
