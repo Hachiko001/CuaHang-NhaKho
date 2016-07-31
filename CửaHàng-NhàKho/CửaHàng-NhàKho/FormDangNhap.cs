@@ -47,7 +47,7 @@ namespace CửaHàng_NhàKho
             {
                 if (formSelected == 0)
                 {
-                    Form nkForm = new nhakhoForm();
+                    Form nkForm = new nhakhoFrom();
                     nkForm.Show();
                     this.Hide();
                 }

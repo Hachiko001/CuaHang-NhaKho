@@ -1,51 +1,12 @@
-C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe.config
-C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe.config
-C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe
-C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.pdb
-C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csprojResolveAssemblyReference.cache
-C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.FormDangNhap.resources
-C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.chitiethangForm.resources
-C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.cuahangForm.resources
-C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.nhakhoForm.resources
-C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.Properties.Resources.resources
-C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csproj.GenerateResource.Cache
-C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.exe
-C:\Users\Thanh Tu\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.pdb
-C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.exe
-C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.pdb
-C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe
-C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.pdb
-C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.FormDangNhap.resources
-C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.chitiethangForm.resources
-C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.cuahangForm.resources
-C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.nhakhoForm.resources
-C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.Properties.Resources.resources
-C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csproj.GenerateResource.Cache
-C:\Users\nguyenvan\Dropbox\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csprojResolveAssemblyReference.cache
-<<<<<<< HEAD
-C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe.config
-C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.exe
-C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.pdb
-C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe
-C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.pdb
-C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csprojResolveAssemblyReference.cache
-C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.FormDangNhap.resources
-C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.chitiethangForm.resources
-C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.cuahangForm.resources
-C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.nhakhoForm.resources
-C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.Properties.Resources.resources
-C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csproj.GenerateResource.Cache
-=======
 D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe.config
-D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.exe
-D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.pdb
 D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe
 D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.pdb
-D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csprojResolveAssemblyReference.cache
 D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.FormDangNhap.resources
 D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.chitiethangForm.resources
 D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.cuahangForm.resources
-D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.nhakhoForm.resources
+D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.nhakhoFrom.resources
 D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.Properties.Resources.resources
 D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csproj.GenerateResource.Cache
->>>>>>> origin/master
+D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.exe
+D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.pdb
+D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csprojResolveAssemblyReference.cache

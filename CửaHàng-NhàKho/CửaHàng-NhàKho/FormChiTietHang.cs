@@ -17,9 +17,9 @@ namespace CửaHàng_NhàKho
         private bool nonNumberEntered = false;
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
-        nhakhoForm NKForm = new nhakhoForm();
+        nhakhoFrom NKForm = new nhakhoFrom();
 
-        public chitiethangForm(nhakhoForm form1)
+        public chitiethangForm(nhakhoFrom form1)
         {
             InitializeComponent();
             NKForm = form1;
@@ -114,7 +114,7 @@ namespace CửaHàng_NhàKho
             {
                 ketnoi.Open();
             }
-            catch(System.Configuration.ConfigurationException ex)
+            catch(System.Configuration.ConfigurationException)
             {
                 MessageBox.Show("Không thể kết nối vào cơ sở dữ liệu", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -127,7 +127,7 @@ namespace CửaHàng_NhàKho
             {
                 lenhSQL.ExecuteNonQuery();
             }
-            catch(SqlException ex)
+            catch(SqlException)
             {
                 MessageBox.Show("Thêm vào thất bại, hãy nhập lại thông tin.", "Thông báo lỗi");
             }
