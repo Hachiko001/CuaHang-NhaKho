@@ -161,6 +161,7 @@ namespace CửaHàng_NhàKho
             themdsPic.ImageLocation = "Resources\\addtocart.png";
             xoadsPic.ImageLocation = "Resources\\trashcan.png";
             giohangPnl.RowHeadersVisible = false;
+            soluongNum.Minimum = 0;   
         }
 
         //----------------------- cài đặt cho hình ảnh hàng hóa
@@ -195,6 +196,7 @@ namespace CửaHàng_NhàKho
                 if (temp.Mahang == picBox.Tag.ToString())
                 {
                     selectedProd = temp;
+                    soluongNum.Maximum = selectedProd.Soluong;
                     break;
                 }
             }
