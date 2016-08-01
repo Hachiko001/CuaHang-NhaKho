@@ -35,14 +35,23 @@
             this.hanghoaPnl = new System.Windows.Forms.FlowLayoutPanel();
             this.themdsPic = new System.Windows.Forms.PictureBox();
             this.xoadsPic = new System.Windows.Forms.PictureBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.giohangPnl = new System.Windows.Forms.DataGridView();
             this.thanhtoanBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.soluongNum = new System.Windows.Forms.NumericUpDown();
+            this.masp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tensp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.giaban = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themdsPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xoadsPic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.giohangPnl)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.soluongNum)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -70,7 +79,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(360, 436);
+            this.groupBox1.Size = new System.Drawing.Size(360, 386);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách hàng:";
@@ -80,7 +89,7 @@
             this.hanghoaPnl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.hanghoaPnl.Location = new System.Drawing.Point(6, 57);
             this.hanghoaPnl.Name = "hanghoaPnl";
-            this.hanghoaPnl.Size = new System.Drawing.Size(328, 363);
+            this.hanghoaPnl.Size = new System.Drawing.Size(328, 319);
             this.hanghoaPnl.TabIndex = 1;
             // 
             // themdsPic
@@ -94,31 +103,39 @@
             this.themdsPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.themdsPic.TabIndex = 10;
             this.themdsPic.TabStop = false;
+            this.themdsPic.Click += new System.EventHandler(this.themdsPic_Click);
             // 
             // xoadsPic
             // 
             this.xoadsPic.Cursor = System.Windows.Forms.Cursors.Hand;
             this.xoadsPic.ImageLocation = "Resources\\signout";
             this.xoadsPic.InitialImage = ((System.Drawing.Image)(resources.GetObject("xoadsPic.InitialImage")));
-            this.xoadsPic.Location = new System.Drawing.Point(378, 276);
+            this.xoadsPic.Location = new System.Drawing.Point(378, 103);
             this.xoadsPic.Name = "xoadsPic";
             this.xoadsPic.Size = new System.Drawing.Size(53, 53);
             this.xoadsPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.xoadsPic.TabIndex = 11;
             this.xoadsPic.TabStop = false;
             // 
-            // dataGridView1
+            // giohangPnl
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 22);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(414, 285);
-            this.dataGridView1.TabIndex = 12;
+            this.giohangPnl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.giohangPnl.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.masp,
+            this.tensp,
+            this.giaban,
+            this.soluong,
+            this.thanhTien});
+            this.giohangPnl.Location = new System.Drawing.Point(18, 22);
+            this.giohangPnl.Name = "giohangPnl";
+            this.giohangPnl.RowHeadersVisible = false;
+            this.giohangPnl.Size = new System.Drawing.Size(414, 304);
+            this.giohangPnl.TabIndex = 12;
             // 
             // thanhtoanBtn
             // 
-            this.thanhtoanBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.thanhtoanBtn.Location = new System.Drawing.Point(738, 418);
+            this.thanhtoanBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.thanhtoanBtn.Location = new System.Drawing.Point(739, 404);
             this.thanhtoanBtn.Name = "thanhtoanBtn";
             this.thanhtoanBtn.Size = new System.Drawing.Size(143, 29);
             this.thanhtoanBtn.TabIndex = 13;
@@ -127,20 +144,80 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dataGridView1);
+            this.groupBox2.Controls.Add(this.giohangPnl);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox2.Location = new System.Drawing.Point(437, 21);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(445, 326);
+            this.groupBox2.Size = new System.Drawing.Size(445, 377);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Giỏ hàng";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button1.Location = new System.Drawing.Point(437, 403);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(143, 29);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Xóa giỏ hàng";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.Location = new System.Drawing.Point(256, 409);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 17);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Số lượng:";
+            // 
+            // soluongNum
+            // 
+            this.soluongNum.Location = new System.Drawing.Point(330, 409);
+            this.soluongNum.Name = "soluongNum";
+            this.soluongNum.Size = new System.Drawing.Size(42, 20);
+            this.soluongNum.TabIndex = 17;
+            // 
+            // masp
+            // 
+            this.masp.HeaderText = "Mã";
+            this.masp.Name = "masp";
+            this.masp.Width = 50;
+            // 
+            // tensp
+            // 
+            this.tensp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tensp.HeaderText = "Tên sản phẩm";
+            this.tensp.Name = "tensp";
+            // 
+            // giaban
+            // 
+            this.giaban.HeaderText = "Giá bán";
+            this.giaban.Name = "giaban";
+            this.giaban.Width = 70;
+            // 
+            // soluong
+            // 
+            this.soluong.HeaderText = "Số lượng";
+            this.soluong.Name = "soluong";
+            this.soluong.Width = 50;
+            // 
+            // thanhTien
+            // 
+            this.thanhTien.HeaderText = "Thành tiền";
+            this.thanhTien.Name = "thanhTien";
+            this.thanhTien.Width = 70;
             // 
             // cuahangForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(894, 460);
+            this.Controls.Add(this.soluongNum);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.thanhtoanBtn);
             this.Controls.Add(this.xoadsPic);
@@ -153,9 +230,11 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themdsPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xoadsPic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.giohangPnl)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.soluongNum)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -167,8 +246,16 @@
         private System.Windows.Forms.FlowLayoutPanel hanghoaPnl;
         private System.Windows.Forms.PictureBox themdsPic;
         private System.Windows.Forms.PictureBox xoadsPic;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView giohangPnl;
         private System.Windows.Forms.Button thanhtoanBtn;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown soluongNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn masp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tensp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn giaban;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soluong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn thanhTien;
     }
 }

@@ -74,6 +74,11 @@
     <Compile Include="Hànghóa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QUAN_LY_CUA_HANGDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QUAN_LY_CUA_HANGDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormDangNhap.resx">
       <DependentUpon>FormDangNhap.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,6 +109,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="QUAN_LY_CUA_HANGDataSet.xsc">
+      <DependentUpon>QUAN_LY_CUA_HANGDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QUAN_LY_CUA_HANGDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QUAN_LY_CUA_HANGDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QUAN_LY_CUA_HANGDataSet.xss">
+      <DependentUpon>QUAN_LY_CUA_HANGDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

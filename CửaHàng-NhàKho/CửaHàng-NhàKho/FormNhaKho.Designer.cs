@@ -30,8 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(nhakhoFrom));
             this.hanghoaPnl = new System.Windows.Forms.FlowLayoutPanel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tkLbl = new System.Windows.Forms.Label();
+            this.searchBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.nsxTxt = new System.Windows.Forms.TextBox();
@@ -48,11 +47,15 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.themhangPic = new System.Windows.Forms.PictureBox();
             this.xoahangPic = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.searchIcon = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.themhangPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xoahangPic)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // hanghoaPnl
@@ -64,31 +67,24 @@
             this.hanghoaPnl.TabIndex = 1;
             this.hanghoaPnl.Paint += new System.Windows.Forms.PaintEventHandler(this.hanghoaPnl_Paint);
             // 
-            // textBox1
+            // searchBox
             // 
-            this.textBox1.AutoCompleteCustomSource.AddRange(new string[] {
+            this.searchBox.AutoCompleteCustomSource.AddRange(new string[] {
             "Chuối",
             "Táo",
             "Nho",
             "Xoài",
             "Cam",
-            "Lê"});
-            this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBox1.Location = new System.Drawing.Point(670, 42);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(212, 20);
-            this.textBox1.TabIndex = 5;
-            // 
-            // tkLbl
-            // 
-            this.tkLbl.AutoSize = true;
-            this.tkLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.tkLbl.Location = new System.Drawing.Point(634, 22);
-            this.tkLbl.Name = "tkLbl";
-            this.tkLbl.Size = new System.Drawing.Size(104, 17);
-            this.tkLbl.TabIndex = 6;
-            this.tkLbl.Text = "Tìm kiếm hàng:";
+            "Lê",
+            "Dầu ăn",
+            "Xà phòng",
+            "Xe đạp"});
+            this.searchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.searchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.searchBox.Location = new System.Drawing.Point(34, 22);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(151, 23);
+            this.searchBox.TabIndex = 5;
             // 
             // groupBox1
             // 
@@ -227,7 +223,7 @@
             this.themhangPic.Cursor = System.Windows.Forms.Cursors.Hand;
             this.themhangPic.Image = ((System.Drawing.Image)(resources.GetObject("themhangPic.Image")));
             this.themhangPic.InitialImage = ((System.Drawing.Image)(resources.GetObject("themhangPic.InitialImage")));
-            this.themhangPic.Location = new System.Drawing.Point(378, 395);
+            this.themhangPic.Location = new System.Drawing.Point(392, 389);
             this.themhangPic.Name = "themhangPic";
             this.themhangPic.Size = new System.Drawing.Size(53, 53);
             this.themhangPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -241,7 +237,7 @@
             this.xoahangPic.Cursor = System.Windows.Forms.Cursors.Hand;
             this.xoahangPic.Image = ((System.Drawing.Image)(resources.GetObject("xoahangPic.Image")));
             this.xoahangPic.InitialImage = ((System.Drawing.Image)(resources.GetObject("xoahangPic.InitialImage")));
-            this.xoahangPic.Location = new System.Drawing.Point(437, 395);
+            this.xoahangPic.Location = new System.Drawing.Point(562, 389);
             this.xoahangPic.Name = "xoahangPic";
             this.xoahangPic.Size = new System.Drawing.Size(53, 53);
             this.xoahangPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -249,18 +245,37 @@
             this.xoahangPic.TabStop = false;
             this.xoahangPic.Click += new System.EventHandler(this.xoahangPic_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.searchIcon);
+            this.groupBox3.Controls.Add(this.searchBox);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.groupBox3.Location = new System.Drawing.Point(630, 12);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(252, 64);
+            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Tìm kiếm hàng:";
+            // 
+            // searchIcon
+            // 
+            this.searchIcon.Location = new System.Drawing.Point(191, 19);
+            this.searchIcon.Name = "searchIcon";
+            this.searchIcon.Size = new System.Drawing.Size(30, 26);
+            this.searchIcon.TabIndex = 6;
+            this.searchIcon.TabStop = false;
+            this.searchIcon.Click += new System.EventHandler(this.searchIcon_Click);
+            // 
             // nhakhoFrom
             // 
-            this.AcceptButton = this.svBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(894, 460);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.xoahangPic);
             this.Controls.Add(this.themhangPic);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.tkLbl);
-            this.Controls.Add(this.textBox1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Name = "nhakhoFrom";
             this.Text = "FormNhaKho";
@@ -271,15 +286,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.themhangPic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xoahangPic)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchIcon)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.FlowLayoutPanel hanghoaPnl;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label tkLbl;
+        private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox themhangPic;
@@ -296,5 +312,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox nsxTxt;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.PictureBox searchIcon;
     }
 }

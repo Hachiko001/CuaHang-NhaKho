@@ -14,6 +14,7 @@ namespace CửaHàng_NhàKho
     {
         List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
+        string connectStr = "Integrated Security=SSPI;Server=(localdb)\\COMPUTER;Database=QUAN_LY_CUA_HANG";
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
@@ -24,12 +25,21 @@ namespace CửaHàng_NhàKho
             
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (nhakhoForm_Close() == false)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                Application.Exit();
+            }
+        }
+
         private void taiCSDL()
         {
             listHang.Clear();                   // xóa list hàng đang có để tải lại
-
-            string connectStr = null;
-            connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
             // Tạo kết nối đến sql server
             SqlConnection ketnoi = new SqlConnection(connectStr);
             try
@@ -90,37 +100,50 @@ namespace CửaHàng_NhàKho
         private void capnhatHangHoa()
         {
             clearFlowPanel();
-            foreach(HangHoa A in listHang)
+            AutoCompleteStringCollection source = new AutoCompleteStringCollection();
+            foreach (HangHoa A in listHang)
             {
                 PictureBox newBox = new PictureBox();
                 newBox.Size = new System.Drawing.Size(100, 94);
                 newBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                
                 newBox.ImageLocation = A.Hinhanh;
    
                 // thêm điều khiển cho box
                 newBox.MouseHover += new EventHandler(picHang_Hover);
                 newBox.MouseLeave += new EventHandler(picHang_Leave);
                 newBox.MouseClick += new MouseEventHandler(picHang_Click);
-                newBox.MouseDoubleClick += new MouseEventHandler(picHang_DoubleClick);
                 newBox.Tag = A.Mahang;
                 newBox.Name = A.Mahang;
                 hanghoaPnl.Controls.Add(newBox);
-                
+                source.Add(A.Mahang);
+                source.Add(A.Ten);
             }
+            //--------------------------------------- cài đặt auto search suggestion
+            searchBox.AutoCompleteCustomSource = source;
         }
 
+        private void capnhatMoTa()
+        {
+            pictureBox1.ImageLocation = selectedProd.Hinhanh;
+            //maTxt.Text = selectedProd.Mahang;
+            tenTxt.Text = selectedProd.Ten;
+            giabTxt.Text = selectedProd.Giaban.ToString();
+            gianTxt.Text = selectedProd.Giaban.ToString();
+            slTxt.Text = selectedProd.Soluong.ToString();
+            nsxTxt.Text = selectedProd.Nhasx;
+        }
 
-        private void NhaKho_Close(object sender, EventArgs e)
+        private bool nhakhoForm_Close()
         {
             DialogResult dialogResult = MessageBox.Show("Bạn có muốn thoát hay không?", "Thoát", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                Application.Exit();
+                return true;
             }
-            else if (dialogResult == DialogResult.No)
+            else
             {
-                //khong lam gi ca
+                return false;
             }
         }
 
@@ -132,16 +155,21 @@ namespace CửaHàng_NhàKho
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.FormClosing += new FormClosingEventHandler(NhaKho_Close);
-            
+            //this.FormClosing += new FormClosingEventHandler(nhakhoForm_Close);
 
+            // -----------------------------------cài đặt hình và tool tip
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            searchIcon.ImageLocation = "Resources\\searchicon.png";
+            searchIcon.SizeMode = PictureBoxSizeMode.StretchImage;
             themhangPic.ImageLocation = "Resources\\add.png";
             xoahangPic.ImageLocation = "Resources\\minus.png";
             themhangPic.MouseHover += new EventHandler(themhangPic_Hover);
             themhangPic.MouseLeave += new EventHandler(themhangPic_Leave);
             xoahangPic.MouseHover += new EventHandler(xoahangPic_Hover);
             xoahangPic.MouseLeave += new EventHandler(xoahangPic_Leave);
+            searchBox.KeyDown += new KeyEventHandler(searchBox_KeyDown);
 
+            
         }
         
 
@@ -195,20 +223,10 @@ namespace CửaHàng_NhàKho
                 }
             }
             //MessageBox.Show("Clicked");
-            pictureBox1.ImageLocation = selectedProd.Hinhanh;
-            //maTxt.Text = selectedProd.Mahang;
-            tenTxt.Text = selectedProd.Ten;
-            giabTxt.Text = selectedProd.Giaban.ToString();
-            gianTxt.Text = selectedProd.Giaban.ToString();
-            slTxt.Text = selectedProd.Soluong.ToString();
-            nsxTxt.Text = selectedProd.Nhasx;
+            capnhatMoTa();
 
         }
-        private void picHang_DoubleClick(object sender, EventArgs e)
-        {
-            
-            
-        }
+
 
 
         //----------------------------------- cài đặt cho nút thêm hàng
@@ -238,8 +256,6 @@ namespace CửaHàng_NhàKho
         {
             if(MessageBox.Show("Bạn muốn xóa mặt hàng " + selectedProd.Ten + " ?", "Xác nhận", MessageBoxButtons.OKCancel)==DialogResult.OK)
             {
-                string connectStr = null;
-                connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
                 // Tạo kết nối đến sql server
                 SqlConnection ketnoi = new SqlConnection(connectStr);
                 try
@@ -254,7 +270,7 @@ namespace CửaHàng_NhàKho
 
                 SqlCommand update = new SqlCommand();
                 // câu lệnh xóa mặt hàng đang chọn
-                update.CommandText = "DELETE SANPHAM WHERE MASP='" + selectedProd.Mahang + "';";
+                update.CommandText = "UPDATE SANPHAM SET SOLUONG=0 WHERE MASP='" + selectedProd.Mahang + "';";
                 update.Connection = ketnoi;
                 update.CommandType = CommandType.Text;
                 try
@@ -279,13 +295,13 @@ namespace CửaHàng_NhàKho
         {
             if (tooltipused == false)
             {
-                tooltip.Show("Xóa mặt hàng", themhangPic);
+                tooltip.Show("Xóa mặt hàng", xoahangPic);
                 tooltipused = true;
             }
         }
         private void xoahangPic_Leave(object sender, EventArgs e)
         {
-            tooltip.Hide(themhangPic);
+            tooltip.Hide(xoahangPic);
             tooltipused = false;
         }
 
@@ -294,8 +310,6 @@ namespace CửaHàng_NhàKho
 
         private void svBtn_Click(object sender, EventArgs e)
         {
-            string connectStr = null;
-            connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
             // Tạo kết nối đến sql server
             SqlConnection ketnoi = new SqlConnection(connectStr);
             try
@@ -310,8 +324,8 @@ namespace CửaHàng_NhàKho
 
             SqlCommand update = new SqlCommand();
             // câu lệnh cập nhật thông tin mặt hàng
-            update.CommandText = "UPDATE SANPHAM SET TENSP='" + tenTxt.Text + "',SOLUONG='" + slTxt.Text + "',GIABAN='" + giabTxt.Text + "',GIANHAP='" + gianTxt.Text + "',NHASX='" + 
-                nsxTxt.Text + "' WHERE MASP='"+selectedProd.Mahang+"';";
+            update.CommandText = @"UPDATE SANPHAM SET TENSP=N'" + tenTxt.Text + @"',SOLUONG='" + slTxt.Text + @"',GIABAN='" + giabTxt.Text + @"',GIANHAP='" + gianTxt.Text + @"',NHASX=N'" + 
+                nsxTxt.Text + @"' WHERE MASP='"+selectedProd.Mahang+@"';";
             update.Connection = ketnoi;
             update.CommandType = CommandType.Text;
             try
@@ -329,5 +343,24 @@ namespace CửaHàng_NhàKho
             ketnoi.Close();
         }
 
+        //----------------------------------------- cài đặt cho ô tìm kiếm
+        private void searchBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Enter)
+            {
+                searchIcon_Click(this, new EventArgs());
+            }
+        }
+        private void searchIcon_Click(object sender, EventArgs e)
+        {
+            foreach (HangHoa a in listHang)
+            {
+                if (a.Mahang == searchBox.Text || a.Ten == searchBox.Text)
+                {
+                    selectedProd = a;
+                    capnhatMoTa();
+                }
+            }
+        }
     }
 }
