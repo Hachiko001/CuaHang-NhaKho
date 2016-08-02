@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(cuahangForm));
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.searchBox = new System.Windows.Forms.TextBox();
             this.tkLbl = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.hanghoaPnl = new System.Windows.Forms.FlowLayoutPanel();
@@ -43,24 +43,29 @@
             this.thanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.thanhtoanBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.xoahetBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.soluongNum = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
+            this.tongtienLbl = new System.Windows.Forms.Label();
+            this.searchIcon = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themdsPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xoadsPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.giohangPnl)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.soluongNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchIcon)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // searchBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(109, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(225, 23);
-            this.textBox1.TabIndex = 0;
+            this.searchBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.searchBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.searchBox.Location = new System.Drawing.Point(109, 28);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(187, 23);
+            this.searchBox.TabIndex = 0;
             // 
             // tkLbl
             // 
@@ -74,8 +79,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.searchIcon);
             this.groupBox1.Controls.Add(this.hanghoaPnl);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.searchBox);
             this.groupBox1.Controls.Add(this.tkLbl);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -176,6 +182,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.tongtienLbl);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.giohangPnl);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -185,6 +192,15 @@
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Giỏ hàng";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(299, 341);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 17);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Tổng:";
             // 
             // xoahetBtn
             // 
@@ -214,14 +230,23 @@
             this.soluongNum.Size = new System.Drawing.Size(42, 20);
             this.soluongNum.TabIndex = 17;
             // 
-            // label2
+            // tongtienLbl
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(299, 341);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 17);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Tổng:";
+            this.tongtienLbl.AutoSize = true;
+            this.tongtienLbl.Location = new System.Drawing.Point(350, 341);
+            this.tongtienLbl.Name = "tongtienLbl";
+            this.tongtienLbl.Size = new System.Drawing.Size(16, 17);
+            this.tongtienLbl.TabIndex = 14;
+            this.tongtienLbl.Text = "0";
+            // 
+            // searchIcon
+            // 
+            this.searchIcon.Location = new System.Drawing.Point(304, 25);
+            this.searchIcon.Name = "searchIcon";
+            this.searchIcon.Size = new System.Drawing.Size(30, 26);
+            this.searchIcon.TabIndex = 7;
+            this.searchIcon.TabStop = false;
+            this.searchIcon.Click += new System.EventHandler(this.searchIcon_Click);
             // 
             // cuahangForm
             // 
@@ -247,6 +272,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.soluongNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,7 +280,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.Label tkLbl;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FlowLayoutPanel hanghoaPnl;
@@ -272,5 +298,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn soluong;
         private System.Windows.Forms.DataGridViewTextBoxColumn thanhTien;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label tongtienLbl;
+        private System.Windows.Forms.PictureBox searchIcon;
     }
 }

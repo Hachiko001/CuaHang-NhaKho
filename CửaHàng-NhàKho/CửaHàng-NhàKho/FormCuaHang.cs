@@ -15,7 +15,7 @@ namespace CửaHàng_NhàKho
         //---------------------- khai báo các biến cục bộ
         private List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
-        string connectStr = "Integrated Security=SSPI;Server=(localdb)\\COMPUTER;Database=QUAN_LY_CUA_HANG";
+        string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
@@ -132,6 +132,7 @@ namespace CửaHàng_NhàKho
         private void capnhatHangHoa()
         {
             clearFlowPanel();
+            AutoCompleteStringCollection source = new AutoCompleteStringCollection();
             foreach (HangHoa A in listHang)
             {
                 PictureBox newBox = new PictureBox();
@@ -145,8 +146,22 @@ namespace CửaHàng_NhàKho
                 newBox.Tag = A.Mahang;
                 newBox.Name = A.Mahang;
                 hanghoaPnl.Controls.Add(newBox);
+                source.Add(A.Mahang);
+                source.Add(A.Ten);
             }
+            searchBox.AutoCompleteCustomSource = source;
         }
+
+        private void tinhTongTien()
+        {
+            int sum = 0;
+            for (int i = 0; i < giohangPnl.Rows.Count; ++i)
+            {
+                sum += Convert.ToInt32(giohangPnl.Rows[i].Cells[4].Value);
+            }
+            tongtienLbl.Text = sum.ToString();
+        }
+
         /// <summary>
         /// các bước khi tải cuahangForm
         /// </summary>
@@ -154,10 +169,10 @@ namespace CửaHàng_NhàKho
         /// <param name="e"></param>
         private void cuahangForm_Load(object sender, EventArgs e)
         {
-            
-            
             taiCSDL();
             capnhatHangHoa();
+            searchIcon.ImageLocation = "Resources\\searchicon.png";
+            searchIcon.SizeMode = PictureBoxSizeMode.StretchImage;
             themdsPic.ImageLocation = "Resources\\addtocart.png";
             xoadsPic.ImageLocation = "Resources\\trashcan.png";
             giohangPnl.RowHeadersVisible = false;
@@ -208,6 +223,7 @@ namespace CửaHàng_NhàKho
         {
             float thanhtien = selectedProd.Giaban * Convert.ToSingle(soluongNum.Value);
             giohangPnl.Rows.Add(selectedProd.Mahang,selectedProd.Ten,selectedProd.Giaban,soluongNum.Value,thanhtien);
+            tinhTongTien();
         }
 
         private void xoadsPic_Click(object sender, EventArgs e)
@@ -215,6 +231,7 @@ namespace CửaHàng_NhàKho
             try
             { 
                 giohangPnl.Rows.RemoveAt(giohangPnl.CurrentRow.Index);
+                tinhTongTien();
             }
             catch(System.InvalidOperationException)
             {
@@ -228,10 +245,22 @@ namespace CửaHàng_NhàKho
             if (a == DialogResult.OK)
             {
                 giohangPnl.Rows.Clear();
+                tinhTongTien();
             }
             else
             {
                 //do nothing
+            }
+        }
+
+        private void searchIcon_Click(object sender, EventArgs e)
+        {
+            foreach (HangHoa a in listHang)
+            {
+                if (a.Mahang == searchBox.Text || a.Ten == searchBox.Text)
+                {
+                    selectedProd = a;
+                }
             }
         }
     }
