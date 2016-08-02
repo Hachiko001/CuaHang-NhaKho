@@ -203,10 +203,36 @@ namespace CửaHàng_NhàKho
             
         }
 
+        //------------------------ cài đặt thêm và xóa hàng
         private void themdsPic_Click(object sender, EventArgs e)
         {
             float thanhtien = selectedProd.Giaban * Convert.ToSingle(soluongNum.Value);
             giohangPnl.Rows.Add(selectedProd.Mahang,selectedProd.Ten,selectedProd.Giaban,soluongNum.Value,thanhtien);
+        }
+
+        private void xoadsPic_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+                giohangPnl.Rows.RemoveAt(giohangPnl.CurrentRow.Index);
+            }
+            catch(System.InvalidOperationException)
+            {
+                MessageBox.Show("Ô trống, không thể xóa", "Thông báo lỗi");
+            }
+        }
+
+        private void xoahetBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult a = MessageBox.Show("Bạn muốn xóa danh sách hàng?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (a == DialogResult.OK)
+            {
+                giohangPnl.Rows.Clear();
+            }
+            else
+            {
+                //do nothing
+            }
         }
     }
 }
