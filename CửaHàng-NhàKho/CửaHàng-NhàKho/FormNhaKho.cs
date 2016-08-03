@@ -37,6 +37,19 @@ namespace CửaHàng_NhàKho
             }
         }
 
+        private bool nhakhoForm_Close()
+        {
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn thoát hay không?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void taiCSDL()
         {
             listHang.Clear();                   // xóa list hàng đang có để tải lại
@@ -132,19 +145,6 @@ namespace CửaHàng_NhàKho
             gianTxt.Text = selectedProd.Giaban.ToString();
             slTxt.Text = selectedProd.Soluong.ToString();
             nsxTxt.Text = selectedProd.Nhasx;
-        }
-
-        private bool nhakhoForm_Close()
-        {
-            DialogResult dialogResult = MessageBox.Show("Bạn có muốn thoát hay không?", "Thoát", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
 
         private void nhakhoForm_Load(object sender, EventArgs e)

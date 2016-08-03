@@ -15,7 +15,7 @@ namespace CửaHàng_NhàKho
         //---------------------- khai báo các biến cục bộ
         private List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
-        string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
+        string connectStr = "Integrated Security=SSPI;Server=(localdb)\\COMPUTER;Database=QUAN_LY_CUA_HANG";
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
@@ -176,7 +176,8 @@ namespace CửaHàng_NhàKho
             themdsPic.ImageLocation = "Resources\\addtocart.png";
             xoadsPic.ImageLocation = "Resources\\trashcan.png";
             giohangPnl.RowHeadersVisible = false;
-            soluongNum.Minimum = 0;   
+            soluongNum.Minimum = 0;
+            searchBox.KeyDown += new KeyEventHandler(searchBox_KeyDown);
         }
 
         //----------------------- cài đặt cho hình ảnh hàng hóa
@@ -212,6 +213,7 @@ namespace CửaHàng_NhàKho
                 {
                     selectedProd = temp;
                     soluongNum.Maximum = selectedProd.Soluong;
+                    slcprodLbl.Text = selectedProd.Mahang;
                     break;
                 }
             }
@@ -253,6 +255,14 @@ namespace CửaHàng_NhàKho
             }
         }
 
+        //----------------------------------------- cài đặt cho ô tìm kiếm
+        private void searchBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                searchIcon_Click(this, new EventArgs());
+            }
+        }
         private void searchIcon_Click(object sender, EventArgs e)
         {
             foreach (HangHoa a in listHang)
@@ -260,6 +270,7 @@ namespace CửaHàng_NhàKho
                 if (a.Mahang == searchBox.Text || a.Ten == searchBox.Text)
                 {
                     selectedProd = a;
+                    slcprodLbl.Text = selectedProd.Mahang;
                 }
             }
         }
