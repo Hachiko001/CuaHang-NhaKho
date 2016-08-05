@@ -24,7 +24,7 @@ GO
 
 create table NHANVIEN
 (		
-		maNV char(12),
+		maNV char(7),
 		hoTen NVARCHAR(40),
 		tenDangNhap NVARCHAR(40),
 		matKhau NVARCHAR(40),
@@ -44,7 +44,7 @@ GO
 create table HOADON
 (		
 		maHD char(12),
-		maNV char(12),
+		maNV char(7),
 		ngayLap datetime
 
 		constraint pk_HOADON

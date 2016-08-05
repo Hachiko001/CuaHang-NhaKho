@@ -274,5 +274,12 @@ namespace CửaHàng_NhàKho
                 }
             }
         }
+
+        //----------------- cài đặt nút thanh toán
+
+        private void thanhtoanBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

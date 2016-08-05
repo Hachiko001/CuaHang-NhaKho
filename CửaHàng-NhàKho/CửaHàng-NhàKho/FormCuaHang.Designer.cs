@@ -191,6 +191,7 @@
             this.thanhtoanBtn.TabIndex = 13;
             this.thanhtoanBtn.Text = "Thanh toán";
             this.thanhtoanBtn.UseVisualStyleBackColor = true;
+            this.thanhtoanBtn.Click += new System.EventHandler(this.thanhtoanBtn_Click);
             // 
             // groupBox2
             // 
