@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+
+
 namespace CửaHàng_NhàKho
 {
     public partial class cuahangForm : Form
@@ -15,7 +17,7 @@ namespace CửaHàng_NhàKho
         //---------------------- khai báo các biến cục bộ
         private List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
-        string connectStr = "Integrated Security=SSPI;Server=(localdb)\\COMPUTER;Database=QUAN_LY_CUA_HANG";
+        string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
@@ -225,10 +227,20 @@ namespace CửaHàng_NhàKho
         //------------------------ cài đặt thêm và xóa hàng
         private void themdsPic_Click(object sender, EventArgs e)
         {
-            float thanhtien = selectedProd.Giaban * Convert.ToSingle(soluongNum.Value);
-            giohangPnl.Rows.Add(selectedProd.Mahang, selectedProd.Ten, selectedProd.Giaban, soluongNum.Value, thanhtien);
-            tinhTongTien();
-        }
+            try
+            {
+                if (soluongNum.Value <= 0)
+                    throw new InvalidOperationException("Số lượng chưa xác định");
+                float thanhtien = selectedProd.Giaban * Convert.ToSingle(soluongNum.Value);
+                giohangPnl.Rows.Add(selectedProd.Mahang, selectedProd.Ten, selectedProd.Giaban, soluongNum.Value, thanhtien);
+                tinhTongTien();
+                soluongNum.ResetText();
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Số lượng chưa xác định", "Lỗi");
+            }
+          }
 
         private void xoadsPic_Click(object sender, EventArgs e)
         {
@@ -327,12 +339,13 @@ namespace CửaHàng_NhàKho
             }
             catch (SqlException)
             {
-                MessageBox.Show("Tải thất bại", "Thông báo lỗi");
+                MessageBox.Show("Câu truy cứu sai", "Thông báo lỗi");
             }
             catch (InvalidCastException)
             {
                 MessageBox.Show("Lỗi convert", "Thông báo lỗi");
             }
+            MessageBox.Show("Thanh toán thành công", "Thông báo");
         }
     }
 }
