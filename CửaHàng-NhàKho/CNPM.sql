@@ -45,7 +45,8 @@ create table HOADON
 (		
 		maHD char(12),
 		maNV char(7),
-		ngayLap datetime
+		ngayLap datetime,
+		tongTien float
 
 		constraint pk_HOADON
 		PRIMARY KEY(maHD)
@@ -93,17 +94,17 @@ INSERT NHANVIEN
 		VALUES('CH00001',N'NGUYỄN VĂN THANH TÚ',N'TUDOI',N'123',N'Bán Hàng',N'NGUYỄN VĂN CỪ','0123456789',N'VKL'),
 			('NK00001',N'NGUYỄN VĂN A',N'1234',N'1234',N'Quản Lý Kho',N'NGUYỄN VĂN CỪ','0123456789',N'VKL')
 INSERT HOADON
-		VALUES('777','CH00001','3/2/2012'),
-			('888','CH00001','9/5/2016'),
-			('999','NK00001','2/2/2012')
+		VALUES('145','CH00001','3/2/2012',30000),
+			('200','CH00001','9/5/2016',30000),
+			('222','NK00001','2/2/2012',30000)
 INSERT CT_HOADON
-		VALUES('777','D123',5),
-				('777','N523',2),
-				('888','S245',1),
-				('999','N523',3),
-				('999','X541',2),
-				('999','S245',2)
-
+		VALUES('145','D123',5),
+				('200','N523',2),
+				('222','S245',1),
+				('222','N523',3),
+				('200','X541',2),
+				('200','S245',2)
+DELETE HOADON
 				
 SELECT * FROM SANPHAM		
 SELECT * FROM NHANVIEN
@@ -113,3 +114,7 @@ SELECT MAX(MAHD) FROM HOADON
 
 INSERT HOADON VALUES('1000','CH00001','11/08/2016')
 DELETE from HOADON where maHD='1000'
+INSERT HOADON VALUES('1000','CH00001','8/15/2016')
+SELECT MAX(MAHD) as prevMAHD FROM HOADON
+
+INSERT CT_HOADON VALUES ('1000','D123',

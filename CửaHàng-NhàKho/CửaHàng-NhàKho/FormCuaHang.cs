@@ -15,11 +15,12 @@ namespace CửaHàng_NhàKho
         //---------------------- khai báo các biến cục bộ
         private List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
-        string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
+        string connectStr = "Integrated Security=SSPI;Server=(localdb)\\COMPUTER;Database=QUAN_LY_CUA_HANG";
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
-        
+
+        float tongtien;
 
         //---------------------------- khởi tạo from cửa hàng
         public cuahangForm()
@@ -154,12 +155,13 @@ namespace CửaHàng_NhàKho
 
         private void tinhTongTien()
         {
-            int sum = 0;
+            float sum = 0;
             for (int i = 0; i < giohangPnl.Rows.Count; ++i)
             {
                 sum += Convert.ToInt32(giohangPnl.Rows[i].Cells[4].Value);
             }
             tongtienLbl.Text = sum.ToString();
+            tongtien = sum;
         }
 
         /// <summary>
@@ -217,25 +219,25 @@ namespace CửaHàng_NhàKho
                     break;
                 }
             }
-            
+
         }
 
         //------------------------ cài đặt thêm và xóa hàng
         private void themdsPic_Click(object sender, EventArgs e)
         {
             float thanhtien = selectedProd.Giaban * Convert.ToSingle(soluongNum.Value);
-            giohangPnl.Rows.Add(selectedProd.Mahang,selectedProd.Ten,selectedProd.Giaban,soluongNum.Value,thanhtien);
+            giohangPnl.Rows.Add(selectedProd.Mahang, selectedProd.Ten, selectedProd.Giaban, soluongNum.Value, thanhtien);
             tinhTongTien();
         }
 
         private void xoadsPic_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 giohangPnl.Rows.RemoveAt(giohangPnl.CurrentRow.Index);
                 tinhTongTien();
             }
-            catch(System.InvalidOperationException)
+            catch (System.InvalidOperationException)
             {
                 MessageBox.Show("Ô trống, không thể xóa", "Thông báo lỗi");
             }
@@ -280,24 +282,17 @@ namespace CửaHàng_NhàKho
         private void thanhtoanBtn_Click(object sender, EventArgs e)
         {
             int maHDLN = 0;
-            SqlConnection ketnoi = new SqlConnection(connectStr);
             try
             {
+                SqlConnection ketnoi = new SqlConnection(connectStr);
                 ketnoi.Open();
-            }
-            catch (System.Configuration.ConfigurationException)
-            {
-                MessageBox.Show("Không thể kết nối vào cơ sở dữ liệu", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
 
-            // lấy mahd lớn nhất để tạo mã hd tiếp theo
-            SqlCommand lenhSQL = new SqlCommand();
-            lenhSQL.Connection = ketnoi;
-            lenhSQL.CommandText = "SELECT MAX(MAHD) as prevMAHD FROM HOADON;";
-            lenhSQL.CommandType = CommandType.Text;
-            try
-            {
+                // lấy mahd lớn nhất để tạo mã hd tiếp theo
+                SqlCommand lenhSQL = new SqlCommand();
+                lenhSQL.Connection = ketnoi;
+                lenhSQL.CommandText = "SELECT MAX(MAHD) as prevMAHD FROM HOADON";
+                lenhSQL.CommandType = CommandType.Text;
+
                 lenhSQL.ExecuteNonQuery();
                 SqlDataReader reader = lenhSQL.ExecuteReader();
                 if (reader.HasRows)
@@ -308,6 +303,27 @@ namespace CửaHàng_NhàKho
                     }
                 }
                 reader.Close();
+                // thêm 1 giá trị cho mã hóa đơn
+                maHDLN++;
+                // lấy thời gian hiện tại
+                string time = DateTime.Now.ToString("MM/dd/yyyy");
+                // thiết lập câu lệnh thêm mã hóa đơn
+                lenhSQL.CommandText = "INSERT HOADON VALUES('" + maHDLN + "','CH00001','" + time + "',"+tongtien+")";
+                lenhSQL.CommandType = CommandType.Text;
+                lenhSQL.ExecuteNonQuery();
+
+                for (int i = 0; i < giohangPnl.Rows.Count-1; ++i)
+                {
+                    lenhSQL.CommandText =
+                        "INSERT CT_HOADON VALUES('" + maHDLN + "','" + giohangPnl.Rows[i].Cells[0].Value.ToString() + "','" + giohangPnl.Rows[i].Cells[3].Value.ToString() + "')";
+                    lenhSQL.ExecuteNonQuery();
+                }
+
+                ketnoi.Close();
+            }
+            catch (System.Configuration.ConfigurationException)
+            {
+                MessageBox.Show("Không thể kết nối vào cơ sở dữ liệu", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (SqlException)
             {
@@ -317,28 +333,6 @@ namespace CửaHàng_NhàKho
             {
                 MessageBox.Show("Lỗi convert", "Thông báo lỗi");
             }
-
-            // insert mã hóa đơn lớn hơn
-            maHDLN++;
-            DateTime time = DateTime.Today;
-            SqlCommand themhoadon = new SqlCommand();
-            themhoadon.Connection = ketnoi;
-            themhoadon.CommandText = "INSERT HOADON VALUES('"+maHDLN+"','CH00001','"+time.Date.ToShortDateString()+"')";
-            themhoadon.CommandType = CommandType.Text;
-            try
-            {
-                themhoadon.ExecuteNonQuery();
-            }
-            catch (SqlException)
-            {
-                MessageBox.Show("Câu lệnh sai!!!", "Thông báo lỗi");
-            }
-            catch (InvalidCastException)
-            {
-                MessageBox.Show("Dạng nhập không phù hợp", "Thông báo lỗi");
-            }
-
-            ketnoi.Close();
         }
     }
 }
