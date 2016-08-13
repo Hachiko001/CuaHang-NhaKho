@@ -15,7 +15,7 @@ namespace CửaHàng_NhàKho
         //---------------------- khai báo các biến cục bộ
         private List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
-        string connectStr = "Integrated Security=SSPI;Server=(localdb)\\COMPUTER;Database=QUAN_LY_CUA_HANG";
+        string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
@@ -279,7 +279,66 @@ namespace CửaHàng_NhàKho
 
         private void thanhtoanBtn_Click(object sender, EventArgs e)
         {
+            int maHDLN = 0;
+            SqlConnection ketnoi = new SqlConnection(connectStr);
+            try
+            {
+                ketnoi.Open();
+            }
+            catch (System.Configuration.ConfigurationException)
+            {
+                MessageBox.Show("Không thể kết nối vào cơ sở dữ liệu", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
 
+            // lấy mahd lớn nhất để tạo mã hd tiếp theo
+            SqlCommand lenhSQL = new SqlCommand();
+            lenhSQL.Connection = ketnoi;
+            lenhSQL.CommandText = "SELECT MAX(MAHD) as prevMAHD FROM HOADON;";
+            lenhSQL.CommandType = CommandType.Text;
+            try
+            {
+                lenhSQL.ExecuteNonQuery();
+                SqlDataReader reader = lenhSQL.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        maHDLN = Convert.ToInt32(reader.GetString(0));
+                    }
+                }
+                reader.Close();
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Tải thất bại", "Thông báo lỗi");
+            }
+            catch (InvalidCastException)
+            {
+                MessageBox.Show("Lỗi convert", "Thông báo lỗi");
+            }
+
+            // insert mã hóa đơn lớn hơn
+            maHDLN++;
+            DateTime time = DateTime.Today;
+            SqlCommand themhoadon = new SqlCommand();
+            themhoadon.Connection = ketnoi;
+            themhoadon.CommandText = "INSERT HOADON VALUES('"+maHDLN+"','CH00001','"+time.Date.ToShortDateString()+"')";
+            themhoadon.CommandType = CommandType.Text;
+            try
+            {
+                themhoadon.ExecuteNonQuery();
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Câu lệnh sai!!!", "Thông báo lỗi");
+            }
+            catch (InvalidCastException)
+            {
+                MessageBox.Show("Dạng nhập không phù hợp", "Thông báo lỗi");
+            }
+
+            ketnoi.Close();
         }
     }
 }
