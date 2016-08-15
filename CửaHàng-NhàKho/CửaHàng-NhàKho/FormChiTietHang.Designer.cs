@@ -314,6 +314,7 @@
             this.huyBtn.TabIndex = 21;
             this.huyBtn.Text = "Hủy";
             this.huyBtn.UseVisualStyleBackColor = true;
+            this.huyBtn.Click += new System.EventHandler(this.huyBtn_Click);
             // 
             // chitiethangForm
             // 

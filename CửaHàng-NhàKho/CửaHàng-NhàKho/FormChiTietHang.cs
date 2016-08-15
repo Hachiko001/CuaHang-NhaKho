@@ -180,5 +180,10 @@ namespace CửaHàng_NhàKho
                 e.Handled = true;
             }
         }
+
+        private void huyBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

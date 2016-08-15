@@ -17,7 +17,7 @@ namespace CửaHàng_NhàKho
         //---------------------- khai báo các biến cục bộ
         private List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
-        string connectStr = "Integrated Security=SSPI;Server=(localdb)\\COMPUTER;Database=QUAN_LY_CUA_HANG";
+        string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
@@ -227,10 +227,14 @@ namespace CửaHàng_NhàKho
         //------------------------ cài đặt thêm và xóa hàng
         private void themdsPic_Click(object sender, EventArgs e)
         {
+            InvalidOperationException er1 = new InvalidOperationException("Chưa chọn mặt hàng");
+            InvalidOperationException er2 = new InvalidOperationException("Số lượng không hợp lệ");
             try
             {
-                if (soluongNum.Value <= 0)
-                    throw new InvalidOperationException("Số lượng chưa xác định");
+                if (selectedProd == null)
+                    throw new InvalidOperationException();
+                if (soluongNum.Value <= 0||soluongNum.Value>selectedProd.Soluong)
+                    throw new InvalidCastException();
                 float thanhtien = selectedProd.Giaban * Convert.ToSingle(soluongNum.Value);
                 giohangPnl.Rows.Add(selectedProd.Mahang, selectedProd.Ten, selectedProd.Giaban, soluongNum.Value, thanhtien);
                 tinhTongTien();
@@ -238,7 +242,11 @@ namespace CửaHàng_NhàKho
             }
             catch (InvalidOperationException)
             {
-                MessageBox.Show("Số lượng chưa xác định", "Lỗi");
+                MessageBox.Show("Chưa chọn mặt hàng", "Lỗi");
+            }
+            catch(InvalidCastException)
+            {
+                MessageBox.Show("Số lượng không phù hợp", "Lỗi");
             }
           }
 

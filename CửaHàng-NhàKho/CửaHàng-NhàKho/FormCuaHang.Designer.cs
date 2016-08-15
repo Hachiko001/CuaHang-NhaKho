@@ -248,9 +248,19 @@
             // soluongNum
             // 
             this.soluongNum.Location = new System.Drawing.Point(330, 424);
+            this.soluongNum.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.soluongNum.Name = "soluongNum";
             this.soluongNum.Size = new System.Drawing.Size(42, 20);
             this.soluongNum.TabIndex = 17;
+            this.soluongNum.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label3
             // 

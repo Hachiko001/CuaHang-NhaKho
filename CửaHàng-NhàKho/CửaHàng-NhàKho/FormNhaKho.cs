@@ -14,7 +14,7 @@ namespace CửaHàng_NhàKho
     {
         List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
-        string connectStr = "Integrated Security=SSPI;Server=(localdb)\\COMPUTER;Database=QUAN_LY_CUA_HANG";
+        string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
@@ -254,41 +254,46 @@ namespace CửaHàng_NhàKho
         //------------------------------------ cài đặt nút xóa hàng
         private void xoahangPic_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Bạn muốn xóa mặt hàng " + selectedProd.Ten + " ?", "Xác nhận", MessageBoxButtons.OKCancel)==DialogResult.OK)
-            {
-                // Tạo kết nối đến sql server
-                SqlConnection ketnoi = new SqlConnection(connectStr);
-                try
-                {
-                    ketnoi.Open();
-                }
-                catch (System.Configuration.ConfigurationException)
-                {
-                    MessageBox.Show("Không thể kết nối vào cơ sở dữ liệu", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-
-                SqlCommand update = new SqlCommand();
-                // câu lệnh xóa mặt hàng đang chọn
-                update.CommandText = "UPDATE SANPHAM SET SOLUONG=0 WHERE MASP='" + selectedProd.Mahang + "';";
-                update.Connection = ketnoi;
-                update.CommandType = CommandType.Text;
-                try
-                {
-                    update.ExecuteNonQuery();
-                    MessageBox.Show("Xóa hàng thành công");
-                    taiCSDL();
-                    capnhatHangHoa();
-                }
-                catch (SqlException)
-                {
-                    MessageBox.Show("Không xóa được thông tin sản phẩm");
-                }
-                ketnoi.Close();
-            }
+            if (selectedProd == null)
+                MessageBox.Show("Chưa chọn mặt hàng", "Thông báo", MessageBoxButtons.OK);
             else
             {
-                // do something
+                if (MessageBox.Show("Bạn muốn xóa mặt hàng " + selectedProd.Ten + " ?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    // Tạo kết nối đến sql server
+                    SqlConnection ketnoi = new SqlConnection(connectStr);
+                    try
+                    {
+                        ketnoi.Open();
+                    }
+                    catch (System.Configuration.ConfigurationException)
+                    {
+                        MessageBox.Show("Không thể kết nối vào cơ sở dữ liệu", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+
+                    SqlCommand update = new SqlCommand();
+                    // câu lệnh xóa mặt hàng đang chọn
+                    update.CommandText = "UPDATE SANPHAM SET SOLUONG=0 WHERE MASP='" + selectedProd.Mahang + "';";
+                    update.Connection = ketnoi;
+                    update.CommandType = CommandType.Text;
+                    try
+                    {
+                        update.ExecuteNonQuery();
+                        MessageBox.Show("Xóa hàng thành công");
+                        taiCSDL();
+                        capnhatHangHoa();
+                    }
+                    catch (SqlException)
+                    {
+                        MessageBox.Show("Không xóa được thông tin sản phẩm");
+                    }
+                    ketnoi.Close();
+                }
+                else
+                {
+                    // do something
+                }
             }
         }
         private void xoahangPic_Hover(object sender, EventArgs e)

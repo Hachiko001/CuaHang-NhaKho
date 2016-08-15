@@ -9,7 +9,6 @@ D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaH�
 D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csproj.GenerateResource.Cache
 D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.exe
 D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.pdb
-D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csprojResolveAssemblyReference.cache
 C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe.config
 C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.exe
 C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.pdb
