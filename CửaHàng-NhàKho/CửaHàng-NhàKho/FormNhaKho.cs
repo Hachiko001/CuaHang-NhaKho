@@ -14,7 +14,7 @@ namespace CửaHàng_NhàKho
     {
         List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
-        string connectStr = "Integrated Security=SSPI;Server=(localdb)\\COMPUTER;Database=QUAN_LY_CUA_HANG";
+        string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
@@ -174,6 +174,7 @@ namespace CửaHàng_NhàKho
             searchIcon.SizeMode = PictureBoxSizeMode.StretchImage;
             themhangPic.ImageLocation = "Resources\\add.png";
             xoahangPic.ImageLocation = "Resources\\minus.png";
+            restoreBtn.ImageLocation = "Resources\\restore.ico";
             themhangPic.MouseHover += new EventHandler(themhangPic_Hover);
             themhangPic.MouseLeave += new EventHandler(themhangPic_Leave);
             xoahangPic.MouseHover += new EventHandler(xoahangPic_Hover);
@@ -218,7 +219,7 @@ namespace CửaHàng_NhàKho
 
                 PictureBox a;                                          // picbox lưu tạm
 
-                if (selectedProd.TinhTrang==1)
+                if (selectedProd.TinhTrang == 1)
                 {
                     a = (PictureBox)hanghoaPnl.Controls[selectedProd.Mahang];
                     a.BorderStyle = BorderStyle.None;
@@ -271,10 +272,12 @@ namespace CửaHàng_NhàKho
         //------------------------------------ cài đặt nút xóa hàng
         private void xoahangPic_Click(object sender, EventArgs e)
         {
-            if (selectedProd == null)
-                MessageBox.Show("Chưa chọn mặt hàng", "Thông báo", MessageBoxButtons.OK);
-            else
+            try
             {
+                if (selectedProd == null)
+                    throw new NullReferenceException();
+                if (selectedProd.TinhTrang == 0)
+                    throw new InvalidExpressionException();
                 if (MessageBox.Show("Bạn muốn xóa mặt hàng " + selectedProd.Ten + " ?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     // Tạo kết nối đến sql server
@@ -313,7 +316,16 @@ namespace CửaHàng_NhàKho
                     // do something
                 }
             }
+            catch (InvalidExpressionException)
+            {
+                MessageBox.Show("Không thể xóa mặt hàng này", "Lỗi", MessageBoxButtons.OK);
+            }
+            catch(NullReferenceException)
+            {
+                MessageBox.Show("Chưa chọn mặt hàng", "Thông báo", MessageBoxButtons.OK);
+            }
         }
+
         private void xoahangPic_Hover(object sender, EventArgs e)
         {
             if (tooltipused == false)
@@ -441,3 +453,5 @@ namespace CửaHàng_NhàKho
         }
     }
 }
+
+

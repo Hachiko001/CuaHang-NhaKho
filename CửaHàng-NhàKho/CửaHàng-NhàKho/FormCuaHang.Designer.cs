@@ -298,7 +298,7 @@
             this.Controls.Add(this.themdsPic);
             this.Controls.Add(this.groupBox1);
             this.Name = "cuahangForm";
-            this.Text = "FormCuaHang";
+            this.Text = "Cửa hàng";
             this.Load += new System.EventHandler(this.cuahangForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

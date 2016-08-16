@@ -175,6 +175,7 @@ namespace CửaHàng_NhàKho
         {
             taiCSDL();
             capnhatHangHoa();
+            this.Icon = new Icon("Resources\\store.ico");
             searchIcon.ImageLocation = "Resources\\searchicon.png";
             searchIcon.SizeMode = PictureBoxSizeMode.StretchImage;
             themdsPic.ImageLocation = "Resources\\addtocart.png";

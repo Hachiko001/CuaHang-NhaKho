@@ -242,7 +242,7 @@
             this.xoahangPic.Cursor = System.Windows.Forms.Cursors.Hand;
             this.xoahangPic.Image = ((System.Drawing.Image)(resources.GetObject("xoahangPic.Image")));
             this.xoahangPic.InitialImage = ((System.Drawing.Image)(resources.GetObject("xoahangPic.InitialImage")));
-            this.xoahangPic.Location = new System.Drawing.Point(510, 389);
+            this.xoahangPic.Location = new System.Drawing.Point(473, 389);
             this.xoahangPic.Name = "xoahangPic";
             this.xoahangPic.Size = new System.Drawing.Size(53, 53);
             this.xoahangPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -294,9 +294,8 @@
             // 
             this.restoreBtn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.restoreBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.restoreBtn.Image = ((System.Drawing.Image)(resources.GetObject("restoreBtn.Image")));
-            this.restoreBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("restoreBtn.InitialImage")));
-            this.restoreBtn.Location = new System.Drawing.Point(451, 389);
+            this.restoreBtn.InitialImage = null;
+            this.restoreBtn.Location = new System.Drawing.Point(562, 389);
             this.restoreBtn.Name = "restoreBtn";
             this.restoreBtn.Size = new System.Drawing.Size(53, 53);
             this.restoreBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -318,7 +317,7 @@
             this.Controls.Add(this.groupBox1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Name = "nhakhoFrom";
-            this.Text = "FormNhaKho";
+            this.Text = "Nhà kho";
             this.Load += new System.EventHandler(this.nhakhoForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

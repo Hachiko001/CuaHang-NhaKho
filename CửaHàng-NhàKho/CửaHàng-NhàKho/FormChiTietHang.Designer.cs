@@ -331,7 +331,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "chitiethangForm";
-            this.Text = "FormChiTietHang";
+            this.Text = "Chi tiết hàng";
             this.Load += new System.EventHandler(this.FormChiTietHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.anhhangPic)).EndInit();
             this.groupBox1.ResumeLayout(false);
