@@ -21,3 +21,4 @@ C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng
 C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.nhakhoFrom.resources
 C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.Properties.Resources.resources
 C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csproj.GenerateResource.Cache
+D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csprojResolveAssemblyReference.cache

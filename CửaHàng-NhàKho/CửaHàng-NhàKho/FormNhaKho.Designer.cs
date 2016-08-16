@@ -49,6 +49,9 @@
             this.xoahangPic = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.searchIcon = new System.Windows.Forms.PictureBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.daxoaPnl = new System.Windows.Forms.FlowLayoutPanel();
+            this.restoreBtn = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -56,6 +59,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.xoahangPic)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchIcon)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.restoreBtn)).BeginInit();
             this.SuspendLayout();
             // 
             // hanghoaPnl
@@ -237,7 +242,7 @@
             this.xoahangPic.Cursor = System.Windows.Forms.Cursors.Hand;
             this.xoahangPic.Image = ((System.Drawing.Image)(resources.GetObject("xoahangPic.Image")));
             this.xoahangPic.InitialImage = ((System.Drawing.Image)(resources.GetObject("xoahangPic.InitialImage")));
-            this.xoahangPic.Location = new System.Drawing.Point(562, 389);
+            this.xoahangPic.Location = new System.Drawing.Point(510, 389);
             this.xoahangPic.Name = "xoahangPic";
             this.xoahangPic.Size = new System.Drawing.Size(53, 53);
             this.xoahangPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -266,11 +271,46 @@
             this.searchIcon.TabStop = false;
             this.searchIcon.Click += new System.EventHandler(this.searchIcon_Click);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.daxoaPnl);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.groupBox4.Location = new System.Drawing.Point(630, 84);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(252, 364);
+            this.groupBox4.TabIndex = 8;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Đã xóa:";
+            // 
+            // daxoaPnl
+            // 
+            this.daxoaPnl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.daxoaPnl.Location = new System.Drawing.Point(8, 22);
+            this.daxoaPnl.Name = "daxoaPnl";
+            this.daxoaPnl.Size = new System.Drawing.Size(238, 336);
+            this.daxoaPnl.TabIndex = 1;
+            // 
+            // restoreBtn
+            // 
+            this.restoreBtn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.restoreBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.restoreBtn.Image = ((System.Drawing.Image)(resources.GetObject("restoreBtn.Image")));
+            this.restoreBtn.InitialImage = ((System.Drawing.Image)(resources.GetObject("restoreBtn.InitialImage")));
+            this.restoreBtn.Location = new System.Drawing.Point(451, 389);
+            this.restoreBtn.Name = "restoreBtn";
+            this.restoreBtn.Size = new System.Drawing.Size(53, 53);
+            this.restoreBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.restoreBtn.TabIndex = 12;
+            this.restoreBtn.TabStop = false;
+            this.restoreBtn.Click += new System.EventHandler(this.restoreBtn_Click);
+            // 
             // nhakhoFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(894, 460);
+            this.Controls.Add(this.restoreBtn);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.xoahangPic);
             this.Controls.Add(this.themhangPic);
@@ -289,6 +329,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchIcon)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.restoreBtn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -314,5 +356,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.PictureBox searchIcon;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.FlowLayoutPanel daxoaPnl;
+        private System.Windows.Forms.PictureBox restoreBtn;
     }
 }

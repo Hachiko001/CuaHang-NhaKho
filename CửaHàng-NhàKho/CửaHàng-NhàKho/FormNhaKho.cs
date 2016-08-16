@@ -14,7 +14,7 @@ namespace CửaHàng_NhàKho
     {
         List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
-        string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
+        string connectStr = "Integrated Security=SSPI;Server=(localdb)\\COMPUTER;Database=QUAN_LY_CUA_HANG";
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
@@ -22,7 +22,7 @@ namespace CửaHàng_NhàKho
         public nhakhoFrom()
         {
             InitializeComponent();
-            
+
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -59,7 +59,7 @@ namespace CửaHàng_NhàKho
             {
                 ketnoi.Open();
             }
-            catch (System.Configuration.ConfigurationException )
+            catch (System.Configuration.ConfigurationException)
             {
                 MessageBox.Show("Không thể kết nối vào cơ sở dữ liệu", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -83,6 +83,7 @@ namespace CửaHàng_NhàKho
                         A.Giaban = Convert.ToSingle(reader.GetValue(3));
                         A.Gianhap = Convert.ToSingle(reader.GetValue(4));
                         A.Nhasx = reader.GetString(5);
+                        A.TinhTrang = reader.GetInt32(6);
                         A.Hinhanh = "Resources//Hanghoa//" + A.Mahang + ".jpg";
                         listHang.Add(A);
                     }
@@ -92,7 +93,7 @@ namespace CửaHàng_NhàKho
             {
                 MessageBox.Show("Tải thất bại", "Thông báo lỗi");
             }
-            catch(InvalidCastException)
+            catch (InvalidCastException)
             {
                 MessageBox.Show("Lỗi convert", "Thông báo lỗi");
             }
@@ -101,12 +102,17 @@ namespace CửaHàng_NhàKho
 
         private void clearFlowPanel()
         {
-            List<Control> listControls = hanghoaPnl.Controls.Cast<Control>().ToList();
-
-            foreach (Control control in listControls)
+            List<FlowLayoutPanel> A = new List<FlowLayoutPanel>();
+            A.Add(hanghoaPnl);
+            A.Add(daxoaPnl);
+            foreach (FlowLayoutPanel tempPnl in A)
             {
-                hanghoaPnl.Controls.Remove(control);
-                control.Dispose();
+                List<Control> listControls = tempPnl.Controls.Cast<Control>().ToList();
+                foreach (Control control in listControls)
+                {
+                    tempPnl.Controls.Remove(control);
+                    control.Dispose();
+                }
             }
         }
 
@@ -114,23 +120,28 @@ namespace CửaHàng_NhàKho
         {
             clearFlowPanel();
             AutoCompleteStringCollection source = new AutoCompleteStringCollection();
-            foreach (HangHoa A in listHang)
+            foreach (HangHoa hh in listHang)
             {
                 PictureBox newBox = new PictureBox();
                 newBox.Size = new System.Drawing.Size(100, 94);
                 newBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                
-                newBox.ImageLocation = A.Hinhanh;
-   
+
+                newBox.ImageLocation = hh.Hinhanh;
+
                 // thêm điều khiển cho box
                 newBox.MouseHover += new EventHandler(picHang_Hover);
                 newBox.MouseLeave += new EventHandler(picHang_Leave);
                 newBox.MouseClick += new MouseEventHandler(picHang_Click);
-                newBox.Tag = A.Mahang;
-                newBox.Name = A.Mahang;
-                hanghoaPnl.Controls.Add(newBox);
-                source.Add(A.Mahang);
-                source.Add(A.Ten);
+                newBox.Tag = hh.Mahang;
+                newBox.Name = hh.Mahang;
+                if (hh.TinhTrang == 0)
+                    daxoaPnl.Controls.Add(newBox);
+                else
+                {
+                    hanghoaPnl.Controls.Add(newBox);
+                    source.Add(hh.Mahang);
+                    source.Add(hh.Ten);
+                }
             }
             //--------------------------------------- cài đặt auto search suggestion
             searchBox.AutoCompleteCustomSource = source;
@@ -169,9 +180,9 @@ namespace CửaHàng_NhàKho
             xoahangPic.MouseLeave += new EventHandler(xoahangPic_Leave);
             searchBox.KeyDown += new KeyEventHandler(searchBox_KeyDown);
 
-            
+
         }
-        
+
 
 
         private void hanghoaPnl_Paint(object sender, PaintEventArgs e)
@@ -181,10 +192,11 @@ namespace CửaHàng_NhàKho
 
         //----------------------- cài đặt cho hình ảnh hàng hóa
         // khi để chuột lên pic hàng
-        private void picHang_Hover(object sender,EventArgs e)
+        private void picHang_Hover(object sender, EventArgs e)
         {
             // làm gì đó
         }
+
         // chỉnh lại về hình của mặt hàng
         private void picHang_Leave(object sender, EventArgs e)
         {
@@ -205,18 +217,23 @@ namespace CửaHàng_NhàKho
             {
 
                 PictureBox a;                                          // picbox lưu tạm
-                    
-                if (hanghoaPnl.Controls.ContainsKey(selectedProd.Mahang))
+
+                if (selectedProd.TinhTrang==1)
                 {
                     a = (PictureBox)hanghoaPnl.Controls[selectedProd.Mahang];
+                    a.BorderStyle = BorderStyle.None;
+                }
+                else
+                {
+                    a = (PictureBox)daxoaPnl.Controls[selectedProd.Mahang];
                     a.BorderStyle = BorderStyle.None;
                 }
             }
 
             // tạo viền cho mặt hàng đã chọn, lấy giá trị của mặt hàng vào trong selectedProd để điền vào ô mô tả
-            foreach ( HangHoa temp in listHang)
+            foreach (HangHoa temp in listHang)
             {
-                if(temp.Mahang == picBox.Tag.ToString())
+                if (temp.Mahang == picBox.Tag.ToString())
                 {
                     selectedProd = temp;
                     break;
@@ -234,7 +251,7 @@ namespace CửaHàng_NhàKho
         {
             Form chitiethangForm = new chitiethangForm(this);
             chitiethangForm.Show();
-            
+
         }
         private void themhangPic_Hover(object sender, EventArgs e)
         {
@@ -274,13 +291,14 @@ namespace CửaHàng_NhàKho
 
                     SqlCommand update = new SqlCommand();
                     // câu lệnh xóa mặt hàng đang chọn
-                    update.CommandText = "UPDATE SANPHAM SET SOLUONG=0 WHERE MASP='" + selectedProd.Mahang + "';";
+                    update.CommandText = "UPDATE SANPHAM SET TINHTRANG=0 WHERE MASP='" + selectedProd.Mahang + "';";
                     update.Connection = ketnoi;
                     update.CommandType = CommandType.Text;
                     try
                     {
                         update.ExecuteNonQuery();
                         MessageBox.Show("Xóa hàng thành công");
+                        selectedProd = null;
                         taiCSDL();
                         capnhatHangHoa();
                     }
@@ -325,12 +343,12 @@ namespace CửaHàng_NhàKho
             {
                 MessageBox.Show("Không thể kết nối vào cơ sở dữ liệu", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
 
             SqlCommand update = new SqlCommand();
             // câu lệnh cập nhật thông tin mặt hàng
-            update.CommandText = @"UPDATE SANPHAM SET TENSP=N'" + tenTxt.Text + @"',SOLUONG='" + slTxt.Text + @"',GIABAN='" + giabTxt.Text + @"',GIANHAP='" + gianTxt.Text + @"',NHASX=N'" + 
-                nsxTxt.Text + @"' WHERE MASP='"+selectedProd.Mahang+@"';";
+            update.CommandText = @"UPDATE SANPHAM SET TENSP=N'" + tenTxt.Text + @"',SOLUONG='" + slTxt.Text + @"',GIABAN='" + giabTxt.Text + @"',GIANHAP='" + gianTxt.Text + @"',NHASX=N'" +
+                nsxTxt.Text + @"' WHERE MASP='" + selectedProd.Mahang + @"';";
             update.Connection = ketnoi;
             update.CommandType = CommandType.Text;
             try
@@ -351,7 +369,7 @@ namespace CửaHàng_NhàKho
         //----------------------------------------- cài đặt cho ô tìm kiếm
         private void searchBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode==Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 searchIcon_Click(this, new EventArgs());
             }
@@ -365,6 +383,60 @@ namespace CửaHàng_NhàKho
                     selectedProd = a;
                     capnhatMoTa();
                 }
+            }
+        }
+
+
+        //---------------------------- khôi phục hàng hóa
+        private void restoreBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (selectedProd == null)
+                    throw new NullReferenceException();
+                if (selectedProd.TinhTrang != 0)
+                    throw new InvalidOperationException();
+
+                // Tạo kết nối đến sql server
+                SqlConnection ketnoi = new SqlConnection(connectStr);
+                try
+                {
+                    ketnoi.Open();
+                }
+                catch (System.Configuration.ConfigurationException)
+                {
+                    MessageBox.Show("Không thể kết nối vào cơ sở dữ liệu", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
+                SqlCommand update = new SqlCommand();
+                // câu lệnh khôi phục mặt hàng đang chọn
+                update.CommandText = "UPDATE SANPHAM SET TINHTRANG=1 WHERE MASP='" + selectedProd.Mahang + "';";
+                update.Connection = ketnoi;
+                update.CommandType = CommandType.Text;
+                try
+                {
+                    update.ExecuteNonQuery();
+                    MessageBox.Show("Khôi phục thành công");
+                    selectedProd = null;
+                    taiCSDL();
+                    capnhatHangHoa();
+
+                }
+                catch (SqlException)
+                {
+                    MessageBox.Show("Không xóa được thông tin sản phẩm");
+                }
+                ketnoi.Close();
+
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Chưa chọn mặt hàng", "Thông báo", MessageBoxButtons.OK);
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Hàng hóa không cần khôi phục", "Thông báo", MessageBoxButtons.OK);
             }
         }
     }

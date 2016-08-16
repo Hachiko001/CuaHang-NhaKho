@@ -18,6 +18,7 @@ namespace CửaHàng_NhàKho
             gianhap = hanghoa.Gianhap;
             mahang = hanghoa.Mahang;
             hinhanh = hanghoa.Hinhanh;
+            tinhTrang = hanghoa.TinhTrang;
         }
         public HangHoa()
         {
@@ -71,6 +72,12 @@ namespace CửaHàng_NhàKho
         {
             get { return hinhanh; }
             set { hinhanh = value; }
+        }
+        private int tinhTrang;
+        public int TinhTrang
+        {
+            get { return tinhTrang; }
+            set { tinhTrang = value; }
         }
 
 

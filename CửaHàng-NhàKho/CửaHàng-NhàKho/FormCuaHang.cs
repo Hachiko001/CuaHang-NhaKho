@@ -17,7 +17,7 @@ namespace CửaHàng_NhàKho
         //---------------------- khai báo các biến cục bộ
         private List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
-        string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
+        string connectStr = "Integrated Security=SSPI;Server=(localdb)\\COMPUTER;Database=QUAN_LY_CUA_HANG";
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
