@@ -329,8 +329,13 @@ namespace CửaHàng_NhàKho
                 // lấy thời gian hiện tại
                 string time = DateTime.Now.ToString("MM/dd/yyyy");
                 // thiết lập câu lệnh thêm mã hóa đơn
+
                 lenhSQL.CommandText = "INSERT HOADON VALUES('" + maHDLN + "','CH00001','" + time + "',"+tongtien+")";
-                lenhSQL.CommandType = CommandType.Text;
+                lenhSQL.CommandText = "EXECUTE THEMHD @MAHD, @MANV, @NGAYLAP, @TONGTIEN";
+
+                lenhSQL.CommandType = CommandType.StoredProcedure;
+
+
                 lenhSQL.ExecuteNonQuery();
 
                 for (int i = 0; i < giohangPnl.Rows.Count-1; ++i)
@@ -338,6 +343,7 @@ namespace CửaHàng_NhàKho
                     lenhSQL.CommandText =
                         "INSERT CT_HOADON VALUES('" + maHDLN + "','" + giohangPnl.Rows[i].Cells[0].Value.ToString() + "','" + giohangPnl.Rows[i].Cells[3].Value.ToString() + "')";
                     lenhSQL.ExecuteNonQuery();
+                    
                 }
 
                 ketnoi.Close();

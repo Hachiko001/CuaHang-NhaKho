@@ -105,7 +105,49 @@ INSERT CT_HOADON
 				('222','N523',3),
 				('200','X541',2),
 				('200','S245',2)
+	go
 				
+create procedure themSP(@masp varchar(12),
+	@tensp nvarchar(40), 
+	@soluong int, 
+	@giaban float,
+	@gianhap float, 
+	@nhasx nvarchar(40), 
+	@tinhtrang int)
+	as
+	begin
+	INSERT SANPHAM
+		VALUES(@masp,@tensp,@soluong,@giaban,@gianhap,@nhasx,@tinhtrang)
+	end
+	go
+
+create procedure themHD(
+	@mahd char(12), 
+	@manv char(7),
+	@ngaylap datetime,
+	@tongtien float)
+	as
+	begin
+	INSERT HOADON
+		VALUES(@mahd,@manv,@ngaylap,@tongtien)
+	end
+	go
+
+create procedure themCTHD(
+	@mahd char(12), 
+	@masp varchar(12),
+	@soluong int)
+	as
+	begin
+	INSERT CT_HOADON
+		VALUES(@mahd,@masp,@soluong)
+
+	update SANPHAM set soLuong-=@soluong  where maSP=@masp
+
+	end
+	go
+
+
 SELECT * FROM SANPHAM		
 SELECT * FROM NHANVIEN
 SELECT * FROM HOADON
@@ -116,3 +158,12 @@ INSERT HOADON VALUES('1000','CH00001','11/08/2016',30000)
 UPDATE SANPHAM SET TINHTRANG=1 WHERE MASP='S245'
 INSERT HOADON VALUES('1000','CH00001','8/15/2016',30000)
 SELECT MAX(MAHD) as prevMAHD FROM HOADON
+
+update SANPHAM set soLuong+=5 where maSP='D123'
+select * from SANPHAM
+
+Begin
+
+execute themHD '1000','CH00001','11/08/2016',30000
+
+end
