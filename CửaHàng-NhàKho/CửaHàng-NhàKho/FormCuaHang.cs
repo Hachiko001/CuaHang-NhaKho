@@ -17,7 +17,7 @@ namespace CửaHàng_NhàKho
         //---------------------- khai báo các biến cục bộ
         private List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
-        string connectStr = "Integrated Security=SSPI;Server=(localdb)\\COMPUTER;Database=QUAN_LY_CUA_HANG";
+        string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
@@ -331,10 +331,14 @@ namespace CửaHàng_NhàKho
                 // thiết lập câu lệnh thêm mã hóa đơn
 
                 lenhSQL.CommandText = "INSERT HOADON VALUES('" + maHDLN + "','CH00001','" + time + "',"+tongtien+")";
-                lenhSQL.CommandText = "EXECUTE THEMHD @MAHD, @MANV, @NGAYLAP, @TONGTIEN";
+                //lenhSQL.CommandText = "EXECUTE THEMHD @MAHD, @MANV, @NGAYLAP, @TONGTIEN";
 
                 lenhSQL.CommandType = CommandType.StoredProcedure;
 
+                lenhSQL.Parameters.AddWithValue("@maHD", maHDLN);
+                lenhSQL.Parameters.AddWithValue("@maNV", "CH00001");
+                lenhSQL.Parameters.AddWithValue("@ngayLap", time);
+                lenhSQL.Parameters.AddWithValue("@tongTien", tongtien);
 
                 lenhSQL.ExecuteNonQuery();
 

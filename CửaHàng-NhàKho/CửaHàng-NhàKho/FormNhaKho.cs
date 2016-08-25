@@ -201,9 +201,8 @@ namespace CửaHàng_NhàKho
         // chỉnh lại về hình của mặt hàng
         private void picHang_Leave(object sender, EventArgs e)
         {
-            PictureBox picBox = sender as PictureBox;
-            string direc = "Resources//Hanghoa//" + picBox.Tag + ".jpg";
-            picBox.Image = Image.FromFile(direc);
+            // do nothing
+
         }
 
 
@@ -359,14 +358,30 @@ namespace CửaHàng_NhàKho
 
             SqlCommand update = new SqlCommand();
             // câu lệnh cập nhật thông tin mặt hàng
-            update.CommandText = @"UPDATE SANPHAM SET TENSP=N'" + tenTxt.Text + @"',SOLUONG='" + slTxt.Text + @"',GIABAN='" + giabTxt.Text + @"',GIANHAP='" + gianTxt.Text + @"',NHASX=N'" +
-                nsxTxt.Text + @"' WHERE MASP='" + selectedProd.Mahang + @"';";
+            //update.CommandText = @"UPDATE SANPHAM SET TENSP=N'" + tenTxt.Text + @"',SOLUONG='" + slTxt.Text + @"',GIABAN='" + giabTxt.Text + @"',GIANHAP='" + gianTxt.Text + @"',NHASX=N'" +
+            //    nsxTxt.Text + @"' WHERE MASP='" + selectedProd.Mahang + @"';";
             update.Connection = ketnoi;
-            update.CommandType = CommandType.Text;
+
+            update.CommandText = "dbo.cnsp";
+            update.CommandType = CommandType.StoredProcedure;
+
+            update.Parameters.Add("@masp", SqlDbType.VarChar, 12);
+            update.Parameters.Add("@tensp", SqlDbType.NVarChar, 40);
+            update.Parameters.Add("@soluong", SqlDbType.Int);
+            update.Parameters.Add("@giaban", SqlDbType.Float);
+            update.Parameters.Add("@gianhap", SqlDbType.Float);
+
+            update.Parameters[0].Value = selectedProd.Mahang;
+            update.Parameters[1].Value = tenTxt.Text;
+            update.Parameters[2].Value = slTxt.Text;
+            update.Parameters[3].Value = giabTxt.Text;
+            update.Parameters[4].Value = gianTxt.Text;
+
+
             try
             {
                 update.ExecuteNonQuery();
-                MessageBox.Show("Thêm hàng thành công");
+                MessageBox.Show("Cập nhật thông tin thành công");
                 // cập nhật lại cơ sở dữ liệu
                 taiCSDL();
                 capnhatHangHoa();

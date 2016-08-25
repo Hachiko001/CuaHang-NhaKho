@@ -106,7 +106,10 @@ INSERT CT_HOADON
 				('200','X541',2),
 				('200','S245',2)
 	go
-				
+	------------------------------------------------------------
+IF OBJECTPROPERTY(object_id('dbo.themSP'), N'IsProcedure') = 1
+	DROP PROCEDURE [dbo].[themSP]
+	go		
 create procedure themSP(@masp varchar(12),
 	@tensp nvarchar(40), 
 	@soluong int, 
@@ -120,7 +123,10 @@ create procedure themSP(@masp varchar(12),
 		VALUES(@masp,@tensp,@soluong,@giaban,@gianhap,@nhasx,@tinhtrang)
 	end
 	go
-
+	------------------------------------------------------------
+IF OBJECTPROPERTY(object_id('dbo.themHD'), N'IsProcedure') = 1
+	DROP PROCEDURE [dbo].[themHD]
+	go
 create procedure themHD(
 	@mahd char(12), 
 	@manv char(7),
@@ -133,6 +139,10 @@ create procedure themHD(
 	end
 	go
 
+	-------------------------------------------------------
+IF OBJECTPROPERTY(object_id('dbo.themCTHD'), N'IsProcedure') = 1
+	DROP PROCEDURE [dbo].[themCTHD]
+	go
 create procedure themCTHD(
 	@mahd char(12), 
 	@masp varchar(12),
@@ -141,8 +151,25 @@ create procedure themCTHD(
 	begin
 	INSERT CT_HOADON
 		VALUES(@mahd,@masp,@soluong)
-
 	update SANPHAM set soLuong-=@soluong  where maSP=@masp
+
+	end
+	go
+
+IF OBJECTPROPERTY(object_id('dbo.cnsp'), N'IsProcedure') = 1
+	DROP PROCEDURE [dbo].[cnsp]
+	go
+create procedure cnsp(
+	@masp varchar(12),
+	@tensp nvarchar(40), 
+	@soluong int,
+	@giaban float,
+	@gianhap float
+	)
+	as
+	begin
+
+	update SANPHAM set soLuong=@soluong, tenSP=@tensp, giaBan=@giaban, giaNhap=@gianhap where maSP=@masp
 
 	end
 	go
@@ -155,15 +182,10 @@ SELECT * FROM CT_HOADON
 SELECT MAX(MAHD) FROM HOADON
 
 INSERT HOADON VALUES('1000','CH00001','11/08/2016',30000)
-UPDATE SANPHAM SET TINHTRANG=1 WHERE MASP='S245'
+UPDATE SANPHAM SET tinhtrang=1 WHERE MASP='S245'
 INSERT HOADON VALUES('1000','CH00001','8/15/2016',30000)
 SELECT MAX(MAHD) as prevMAHD FROM HOADON
 
 update SANPHAM set soLuong+=5 where maSP='D123'
 select * from SANPHAM
 
-Begin
-
-execute themHD '1000','CH00001','11/08/2016',30000
-
-end

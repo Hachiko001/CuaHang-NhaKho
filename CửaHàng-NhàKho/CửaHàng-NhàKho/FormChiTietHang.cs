@@ -104,10 +104,10 @@ namespace CửaHàng_NhàKho
             hanghoa.Nhasx = nhasxBox.Text;
             hanghoa.Soluong = Convert.ToInt32(soluongBox.Value);
             hanghoa.Hinhanh = anhhangPic.ImageLocation;
-
+            hanghoa.TinhTrang = 1;
             //lưu vào sql server
             string connectStr = null;
-            connectStr = "Integrated Security=SSPI;Server=(localdb)\\COMPUTER;Database=QUAN_LY_CUA_HANG";
+            connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
             // Tạo kết nối đến sql server
             SqlConnection ketnoi = new SqlConnection(connectStr);
             try
@@ -121,11 +121,38 @@ namespace CửaHàng_NhàKho
             // gắn kết nối cho lenhSQL
             SqlCommand lenhSQL = new SqlCommand();
             lenhSQL.Connection = ketnoi;
-            lenhSQL.CommandText = "INSERT SANPHAM VALUES('"+hanghoa.Mahang+"', N'"+hanghoa.Ten+"', "+hanghoa.Soluong+", "+hanghoa.Giaban+","+hanghoa.Gianhap+", N'"+hanghoa.Nhasx+"')";
-            lenhSQL.CommandType = CommandType.Text;
+            //lenhSQL.CommandText = "INSERT SANPHAM VALUES('"+hanghoa.Mahang+"', N'"+hanghoa.Ten+"', "+hanghoa.Soluong+", "+hanghoa.Giaban+","+hanghoa.Gianhap+", N'"+hanghoa.Nhasx+"')";
+            lenhSQL.CommandText = "dbo.themSP";
+            lenhSQL.CommandType = CommandType.StoredProcedure;
+
+            lenhSQL.Parameters.Add("@masp", SqlDbType.VarChar, 12);
+            lenhSQL.Parameters.Add("@tensp", SqlDbType.NVarChar, 40);
+            lenhSQL.Parameters.Add("@soluong", SqlDbType.Int);
+            lenhSQL.Parameters.Add("@giaban", SqlDbType.Float);
+            lenhSQL.Parameters.Add("@gianhap", SqlDbType.Float);
+            lenhSQL.Parameters.Add("@nhasx", SqlDbType.NVarChar,40);
+            lenhSQL.Parameters.Add("@tinhtrang", SqlDbType.Int);
+
+            lenhSQL.Parameters[0].Value = hanghoa.Mahang;
+            lenhSQL.Parameters[1].Value = hanghoa.Ten;
+            lenhSQL.Parameters[2].Value = hanghoa.Soluong;
+            lenhSQL.Parameters[3].Value = hanghoa.Giaban;
+            lenhSQL.Parameters[4].Value = hanghoa.Gianhap;
+            lenhSQL.Parameters[5].Value = hanghoa.Nhasx;
+            lenhSQL.Parameters[6].Value = hanghoa.TinhTrang;
+
             try
             {
                 lenhSQL.ExecuteNonQuery();
+                DialogResult result= MessageBox.Show("Thêm hàng thành công, nhấn ok để thoát cửa số này", "Thông báo", MessageBoxButtons.OKCancel);
+                if(result== DialogResult.OK)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    // do nothing
+                }
             }
             catch(SqlException)
             {
