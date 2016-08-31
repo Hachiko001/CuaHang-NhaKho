@@ -153,7 +153,7 @@ namespace CửaHàng_NhàKho
             //maTxt.Text = selectedProd.Mahang;
             tenTxt.Text = selectedProd.Ten;
             giabTxt.Text = selectedProd.Giaban.ToString();
-            gianTxt.Text = selectedProd.Giaban.ToString();
+            gianTxt.Text = selectedProd.Gianhap.ToString();
             slTxt.Text = selectedProd.Soluong.ToString();
             nsxTxt.Text = selectedProd.Nhasx;
         }

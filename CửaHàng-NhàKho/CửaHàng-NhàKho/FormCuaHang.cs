@@ -16,6 +16,7 @@ namespace CửaHàng_NhàKho
     {
         //---------------------- khai báo các biến cục bộ
         private List<HangHoa> listHang = new List<HangHoa>();
+        private GioHang gioHang = new GioHang();
         HangHoa selectedProd;
         string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
 
@@ -155,16 +156,20 @@ namespace CửaHàng_NhàKho
             searchBox.AutoCompleteCustomSource = source;
         }
 
-        private void tinhTongTien()
+        private void capnhatGioHang()
         {
-            float sum = 0;
-            for (int i = 0; i < giohangPnl.Rows.Count; ++i)
+            giohangPnl.Rows.Clear();
+            giohangPnl.Refresh();
+
+            foreach(HangHoa A in gioHang.dsHang)
             {
-                sum += Convert.ToInt32(giohangPnl.Rows[i].Cells[4].Value);
+                float thanhtien = A.Giaban * Convert.ToSingle(A.Soluong);
+                giohangPnl.Rows.Add(A.Mahang, A.Ten, A.Giaban, A.Soluong, thanhtien);
             }
-            tongtienLbl.Text = sum.ToString();
-            tongtien = sum;
+            tongtien = gioHang.tongtien;
+            tongtienLbl.Text = tongtien.ToString();
         }
+        
 
         /// <summary>
         /// các bước khi tải cuahangForm
@@ -236,9 +241,12 @@ namespace CửaHàng_NhàKho
                     throw new InvalidOperationException();
                 if (soluongNum.Value <= 0||soluongNum.Value>selectedProd.Soluong)
                     throw new InvalidCastException();
-                float thanhtien = selectedProd.Giaban * Convert.ToSingle(soluongNum.Value);
-                giohangPnl.Rows.Add(selectedProd.Mahang, selectedProd.Ten, selectedProd.Giaban, soluongNum.Value, thanhtien);
-                tinhTongTien();
+
+                if (gioHang.themHang(selectedProd, Convert.ToInt32(soluongNum.Value)))
+                    capnhatGioHang();
+                else
+                    throw new InvalidCastException();
+
                 soluongNum.ResetText();
             }
             catch (InvalidOperationException)
@@ -249,14 +257,16 @@ namespace CửaHàng_NhàKho
             {
                 MessageBox.Show("Số lượng không phù hợp", "Lỗi");
             }
+            
           }
 
         private void xoadsPic_Click(object sender, EventArgs e)
         {
             try
             {
-                giohangPnl.Rows.RemoveAt(giohangPnl.CurrentRow.Index);
-                tinhTongTien();
+                gioHang.xoaHang(giohangPnl.CurrentRow.Cells[0].Value.ToString());
+                capnhatGioHang();
+
             }
             catch (System.InvalidOperationException)
             {
@@ -269,8 +279,8 @@ namespace CửaHàng_NhàKho
             DialogResult a = MessageBox.Show("Bạn muốn xóa danh sách hàng?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (a == DialogResult.OK)
             {
-                giohangPnl.Rows.Clear();
-                tinhTongTien();
+                gioHang.xoaGioHang();
+                capnhatGioHang();
             }
             else
             {
@@ -333,7 +343,7 @@ namespace CửaHàng_NhàKho
                 lenhSQL.CommandText = "INSERT HOADON VALUES('" + maHDLN + "','CH00001','" + time + "',"+tongtien+")";
                 //lenhSQL.CommandText = "EXECUTE THEMHD @MAHD, @MANV, @NGAYLAP, @TONGTIEN";
 
-                lenhSQL.CommandType = CommandType.StoredProcedure;
+                lenhSQL.CommandType = CommandType.Text;
 
                 lenhSQL.Parameters.AddWithValue("@maHD", maHDLN);
                 lenhSQL.Parameters.AddWithValue("@maNV", "CH00001");
@@ -344,6 +354,8 @@ namespace CửaHàng_NhàKho
 
                 for (int i = 0; i < giohangPnl.Rows.Count-1; ++i)
                 {
+
+
                     lenhSQL.CommandText =
                         "INSERT CT_HOADON VALUES('" + maHDLN + "','" + giohangPnl.Rows[i].Cells[0].Value.ToString() + "','" + giohangPnl.Rows[i].Cells[3].Value.ToString() + "')";
                     lenhSQL.ExecuteNonQuery();
@@ -364,7 +376,7 @@ namespace CửaHàng_NhàKho
             {
                 MessageBox.Show("Lỗi convert", "Thông báo lỗi");
             }
-            MessageBox.Show("Thanh toán thành công", "Thông báo");
+            MessageBox.Show("Thanh toán thành công.\n Mã hóa đơn là "+maHDLN, "Thông báo");
         }
     }
 }

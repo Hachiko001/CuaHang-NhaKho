@@ -71,6 +71,7 @@
     <Compile Include="FormNhaKho.Designer.cs">
       <DependentUpon>FormNhaKho.cs</DependentUpon>
     </Compile>
+    <Compile Include="GioHang.cs" />
     <Compile Include="Hànghóa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

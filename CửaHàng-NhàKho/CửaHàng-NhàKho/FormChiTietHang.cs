@@ -65,7 +65,7 @@ namespace CửaHàng_NhàKho
         {
             OpenFileDialog picBrw = new OpenFileDialog();
             picBrw.InitialDirectory = "C:\\";
-            picBrw.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            picBrw.Filter = "JPG Files (*.jpg)|*.jpg|JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|GIF Files (*.gif)|*.gif";
             picBrw.Title = "Chọn hình ảnh";
             if(picBrw.ShowDialog()==DialogResult.OK)
             {
@@ -105,6 +105,19 @@ namespace CửaHàng_NhàKho
             hanghoa.Soluong = Convert.ToInt32(soluongBox.Value);
             hanghoa.Hinhanh = anhhangPic.ImageLocation;
             hanghoa.TinhTrang = 1;
+
+            // copy hình vào thư mục hàng hóa
+
+            if (anhhangPic.ImageLocation!=null)
+            {
+                string filename = hanghoa.Mahang + ".jpg";
+                string src = anhhangPic.ImageLocation;
+                string dest = System.IO.Path.Combine(@"Resources\Hanghoa",filename);
+
+                System.IO.File.Copy(src, dest, true);
+
+            }
+
             //lưu vào sql server
             string connectStr = null;
             connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
