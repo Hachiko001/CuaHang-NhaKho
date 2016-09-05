@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace CửaHàng_NhàKho
 {
@@ -18,11 +19,7 @@ namespace CửaHàng_NhàKho
         public FormDangNhap()
         {
             InitializeComponent();
-            dangnhapPnl.Visible = false;
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            this.StartPosition = FormStartPosition.CenterScreen;
+            
         }
 
         private void chBtn_Click(object sender, EventArgs e)
@@ -43,21 +40,57 @@ namespace CửaHàng_NhàKho
 
         private void BtnDangNhap_Click(object sender, EventArgs e)
         {
-            if (id == "admin" && password == "admin")
+            try
             {
-                if (formSelected == 0)
+                if (csdlTxt == null)
                 {
-                    Form nkForm = new nhakhoFrom();
-                    nkForm.Show();
-                   // this.Close();
-                    this.Hide();
+                    throw new InvalidProgramException();
+                }
+            }
+            catch (InvalidProgramException)
+            {
+                MessageBox.Show("Chưa nhập cơ sở dữ liệu", "Thông báo", MessageBoxButtons.OKCancel);
+            }
+
+            try
+            {
+                // thử kết nối vào csdl
+                string connectStr = "Integrated Security=SSPI;Server=" + csdlTxt.Text + ";Database=QUAN_LY_CUA_HANG";
+
+                SqlConnection ketnoi = new SqlConnection(connectStr);
+
+                ketnoi.Open();
+
+                if (id == "admin" && password == "admin")
+                {
+                    if (formSelected == 0)
+                    {
+                        Form nkForm = new nhakhoFrom(csdlTxt.Text);
+                        nkForm.Show();
+                        // this.Close();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        Form chForm = new cuahangForm(csdlTxt.Text);
+                        chForm.Show();
+                        this.Hide();
+                    }
                 }
                 else
                 {
-                    Form chForm = new cuahangForm();
-                    chForm.Show();
-                    this.Hide();
+                    throw new InvalidExpressionException();
                 }
+                // đóng kết nối nếu kết nối thành công
+                ketnoi.Close();
+            }
+            catch (System.Data.SqlClient.SqlException)
+            {
+                MessageBox.Show("Cơ sở dữ liệu không kết nối được hoặc không tồn tại", "Thông báo", MessageBoxButtons.OKCancel);
+            }
+            catch(InvalidExpressionException)
+            {
+                MessageBox.Show("Tài khoản/ mật khẩu không hợp lệ", "Thông báo", MessageBoxButtons.OK);
             }
         }
 
@@ -74,8 +107,32 @@ namespace CửaHàng_NhàKho
             password = objTextBox.Text;
         }
 
+        private void OnTestTextBoxGotFocus(object sender, EventArgs e)
+        {
+            if (csdlTxt.Text.Equals("Nhập tên csdl", StringComparison.OrdinalIgnoreCase))
+            {
+                csdlTxt.Text = string.Empty;
+            }
+        }
+
+        private void OnTestTextBoxLostFocus(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(csdlTxt.Text))
+            {
+                csdlTxt.Text = "Nhập tên csdl";
+            }
+        }
+
         private void FormDangNhap_Load(object sender, EventArgs e)
         {
+            dangnhapPnl.Visible = false;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            csdlTxt.GotFocus += OnTestTextBoxGotFocus;
+            csdlTxt.LostFocus += OnTestTextBoxLostFocus;
 
         }
     }

@@ -17,12 +17,12 @@ namespace CửaHàng_NhàKho
         private bool nonNumberEntered = false;
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
-        nhakhoFrom NKForm = new nhakhoFrom();
+        //nhakhoFrom NKForm = new nhakhoFrom();
 
         public chitiethangForm(nhakhoFrom form1)
         {
             InitializeComponent();
-            NKForm = form1;
+            //NKForm = form1;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -106,17 +106,6 @@ namespace CửaHàng_NhàKho
             hanghoa.Hinhanh = anhhangPic.ImageLocation;
             hanghoa.TinhTrang = 1;
 
-            // copy hình vào thư mục hàng hóa
-
-            if (anhhangPic.ImageLocation!=null)
-            {
-                string filename = hanghoa.Mahang + ".jpg";
-                string src = anhhangPic.ImageLocation;
-                string dest = System.IO.Path.Combine(@"Resources\Hanghoa",filename);
-
-                System.IO.File.Copy(src, dest, true);
-
-            }
 
             //lưu vào sql server
             string connectStr = null;
@@ -157,6 +146,19 @@ namespace CửaHàng_NhàKho
             try
             {
                 lenhSQL.ExecuteNonQuery();
+
+                // copy hình vào thư mục hàng hóa
+
+                if (anhhangPic.ImageLocation != null)
+                {
+                    string filename = hanghoa.Mahang + ".jpg";
+                    string src = anhhangPic.ImageLocation;
+                    string dest = System.IO.Path.Combine(@"Resources\Hanghoa", filename);
+
+                    System.IO.File.Copy(src, dest, true);
+
+                }
+
                 DialogResult result= MessageBox.Show("Thêm hàng thành công, nhấn ok để thoát cửa số này", "Thông báo", MessageBoxButtons.OKCancel);
                 if(result== DialogResult.OK)
                 {

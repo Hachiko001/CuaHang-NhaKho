@@ -14,15 +14,15 @@ namespace CửaHàng_NhàKho
     {
         List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
-        string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
+        string connectStr = null;
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
         PictureBox themHang = new PictureBox();
-        public nhakhoFrom()
+        public nhakhoFrom(string csdlTen)
         {
             InitializeComponent();
-
+            connectStr = "Integrated Security=SSPI;Server=" + csdlTen + ";Database=QUAN_LY_CUA_HANG";
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -251,7 +251,7 @@ namespace CửaHàng_NhàKho
         {
             Form chitiethangForm = new chitiethangForm(this);
             chitiethangForm.Show();
-
+            capnhatHangHoa();
         }
         private void themhangPic_Hover(object sender, EventArgs e)
         {

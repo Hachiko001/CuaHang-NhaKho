@@ -18,7 +18,7 @@ namespace CửaHàng_NhàKho
         private List<HangHoa> listHang = new List<HangHoa>();
         private GioHang gioHang = new GioHang();
         HangHoa selectedProd;
-        string connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
+        string connectStr = null;
 
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
@@ -26,13 +26,15 @@ namespace CửaHàng_NhàKho
         float tongtien;
 
         //---------------------------- khởi tạo from cửa hàng
-        public cuahangForm()
+        public cuahangForm(string csdlTen)
         {
             InitializeComponent();
             this.MinimizeBox = false;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.StartPosition = FormStartPosition.CenterScreen;
+            connectStr = "Integrated Security=SSPI;Server=" + csdlTen + ";Database=QUAN_LY_CUA_HANG";
+
             //this.FormClosing += new FormClosingEventHandler(CuaHang_Close);
         }
 
