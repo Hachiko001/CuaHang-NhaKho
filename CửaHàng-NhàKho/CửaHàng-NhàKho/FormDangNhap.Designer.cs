@@ -38,6 +38,8 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.dangnhapPnl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,7 +108,7 @@
             this.csdlTxt.Location = new System.Drawing.Point(144, 31);
             this.csdlTxt.Name = "csdlTxt";
             this.csdlTxt.Size = new System.Drawing.Size(169, 20);
-            this.csdlTxt.TabIndex = 3;
+            this.csdlTxt.TabIndex = 1;
             // 
             // txtPass
             // 
@@ -144,12 +146,32 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên đăng nhập";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "label4";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(630, 408);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(248, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "(*)Để trống tên CSDL để chọn máy tính đang chạy";
+            // 
             // FormDangNhap
             // 
             this.AcceptButton = this.BtnDangNhap;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(890, 430);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.dangnhapPnl);
             this.Controls.Add(this.nkBtn);
             this.Controls.Add(this.chBtn);
@@ -162,6 +184,7 @@
             this.dangnhapPnl.ResumeLayout(false);
             this.dangnhapPnl.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -177,6 +200,8 @@
         private System.Windows.Forms.Button BtnDangNhap;
         private System.Windows.Forms.TextBox csdlTxt;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
 

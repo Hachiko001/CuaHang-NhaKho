@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace CửaHàng_NhàKho
 {
@@ -103,8 +104,26 @@ namespace CửaHàng_NhàKho
                         A.Soluong = reader.GetInt32(2);
                         A.Giaban = Convert.ToSingle(reader.GetValue(3));
                         A.Gianhap = Convert.ToSingle(reader.GetValue(4));
-                        A.Nhasx = reader.GetString(5);
-                        A.Hinhanh = "Resources//Hanghoa//" + A.Mahang + ".jpg";
+                        try
+                        {
+                            A.Nhasx = reader.GetString(5);
+                        }
+                        catch (System.Data.SqlTypes.SqlNullValueException)
+                        {
+                            A.Nhasx = null;
+                        }
+
+                        A.TinhTrang = reader.GetInt32(6);
+                        string hinhanhDir = "Resources//Hanghoa//" + A.Mahang + ".jpg";
+                        string hinhanhDef = "Resources//Hanghoa//Default.jpg";
+                        if (File.Exists(hinhanhDir))
+                        {
+                            A.Hinhanh = hinhanhDir;
+                        }
+                        else
+                        {
+                            A.Hinhanh = hinhanhDef;
+                        }
                         listHang.Add(A);
                     }
                 }
@@ -310,44 +329,69 @@ namespace CửaHàng_NhàKho
             }
         }
 
+        private string layMHD()
+        {
+            string maHD=null;
+            while (true)
+            {
+                Random rn = new Random();
+                string charsToUse = "AzByCxDwEvFuGtHsIrJqKpLoMnNmOlPkQjRiShTgUfVeWdXcYbZa1234567890";
+
+                MatchEvaluator RandomChar = delegate (Match m)
+                {
+                    return charsToUse[rn.Next(charsToUse.Length)].ToString();
+                };
+                maHD = Regex.Replace("XXXXXXXXXXXX", "X", RandomChar);
+
+                /// kiểm tra thử xem mã hóa đơn có tồn tại chưa
+
+                SqlConnection ketnoi = new SqlConnection(connectStr);
+                ketnoi.Open();
+                SqlCommand lenhSQL = new SqlCommand();
+                lenhSQL.Connection = ketnoi;
+                lenhSQL.CommandType = CommandType.Text;
+                lenhSQL.CommandText = "Select * From HOADON Where maHD=" + maHD;
+                try {
+                    lenhSQL.ExecuteNonQuery();
+                }
+                catch (System.Data.SqlClient.SqlException)
+                {
+                    return maHD;
+                }
+                ketnoi.Close();
+            }
+            
+        }
+
+
         //----------------- cài đặt nút thanh toán
 
         private void thanhtoanBtn_Click(object sender, EventArgs e)
         {
-            int maHDLN = 0;
+            
+
+            
+            string maHD = null;
             try
             {
+                // lấy thời gian hiện tại
+                string time = DateTime.Now.ToString("MM/dd/yyyy");
+                maHD = layMHD();
+
                 SqlConnection ketnoi = new SqlConnection(connectStr);
                 ketnoi.Open();
 
-                // lấy mahd lớn nhất để tạo mã hd tiếp theo
                 SqlCommand lenhSQL = new SqlCommand();
                 lenhSQL.Connection = ketnoi;
-                lenhSQL.CommandText = "SELECT MAX(MAHD) as prevMAHD FROM HOADON";
-                lenhSQL.CommandType = CommandType.Text;
-
-                lenhSQL.ExecuteNonQuery();
-                SqlDataReader reader = lenhSQL.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        maHDLN = Convert.ToInt32(reader.GetString(0));
-                    }
-                }
-                reader.Close();
-                // thêm 1 giá trị cho mã hóa đơn
-                maHDLN++;
-                // lấy thời gian hiện tại
-                string time = DateTime.Now.ToString("MM/dd/yyyy");
+               
+                
                 // thiết lập câu lệnh thêm mã hóa đơn
-
-                lenhSQL.CommandText = "INSERT HOADON VALUES('" + maHDLN + "','CH00001','" + time + "',"+tongtien+")";
+                lenhSQL.CommandText = "INSERT HOADON VALUES('" + maHD + "','CH00001','" + time + "',"+tongtien+")";
                 //lenhSQL.CommandText = "EXECUTE THEMHD @MAHD, @MANV, @NGAYLAP, @TONGTIEN";
 
                 lenhSQL.CommandType = CommandType.Text;
 
-                lenhSQL.Parameters.AddWithValue("@maHD", maHDLN);
+                lenhSQL.Parameters.AddWithValue("@maHD", maHD);
                 lenhSQL.Parameters.AddWithValue("@maNV", "CH00001");
                 lenhSQL.Parameters.AddWithValue("@ngayLap", time);
                 lenhSQL.Parameters.AddWithValue("@tongTien", tongtien);
@@ -359,7 +403,7 @@ namespace CửaHàng_NhàKho
 
 
                     lenhSQL.CommandText =
-                        "INSERT CT_HOADON VALUES('" + maHDLN + "','" + giohangPnl.Rows[i].Cells[0].Value.ToString() + "','" + giohangPnl.Rows[i].Cells[3].Value.ToString() + "')";
+                        "INSERT CT_HOADON VALUES('" + maHD + "','" + giohangPnl.Rows[i].Cells[0].Value.ToString() + "','" + giohangPnl.Rows[i].Cells[3].Value.ToString() + "')";
                     lenhSQL.ExecuteNonQuery();
                     
                 }
@@ -370,15 +414,15 @@ namespace CửaHàng_NhàKho
             {
                 MessageBox.Show("Không thể kết nối vào cơ sở dữ liệu", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (SqlException)
-            {
-                MessageBox.Show("Câu truy cứu sai", "Thông báo lỗi");
-            }
+            //catch (SqlException)
+            //{
+            //    MessageBox.Show("Câu truy cứu sai", "Thông báo lỗi");
+            //}
             catch (InvalidCastException)
             {
                 MessageBox.Show("Lỗi convert", "Thông báo lỗi");
             }
-            MessageBox.Show("Thanh toán thành công.\n Mã hóa đơn là "+maHDLN, "Thông báo");
+            MessageBox.Show("Thanh toán thành công.\n Mã hóa đơn là "+maHD, "Thông báo");
         }
     }
 }

@@ -11,12 +11,12 @@ go
 create table SANPHAM
 (		
 		maSP varchar(12),
-		tenSP NVARCHAR(40),
-		soLuong int,
-		giaBan float,
-		giaNhap float,
+		tenSP NVARCHAR(40) NOT NULL,
+		soLuong INT NOT NULL,
+		giaBan FLOAT NOT NULL,
+		giaNhap FLOAT NOT NULL,
 		nhaSX NVARCHAR(40),
-		tinhTrang int
+		tinhTrang int NOT NULL
 		constraint pk_SANPHAM
 		PRIMARY KEY(maSP)
 )
@@ -29,7 +29,7 @@ create table NHANVIEN
 		hoTen NVARCHAR(40),
 		tenDangNhap NVARCHAR(40),
 		matKhau NVARCHAR(40),
-		loaiNV NVARCHAR(15),
+		loaiNV NVARCHAR(15) NOT NULL,
 		diaChi NVARCHAR(40),
 		dienThoai CHAR(12),
 		moTa NVARCHAR(40),
@@ -183,9 +183,9 @@ SELECT MAX(MAHD) FROM HOADON
 
 INSERT HOADON VALUES('1000','CH00001','11/08/2016',30000)
 UPDATE SANPHAM SET tinhtrang=1 WHERE MASP='S245'
-INSERT HOADON VALUES('1000','CH00001','8/15/2016',30000)
 SELECT MAX(MAHD) as prevMAHD FROM HOADON
 
+SELECT * FROM SANPHAM WHERE maSP='D5124'
 update SANPHAM set soLuong+=5 where maSP='D123'
 select * from SANPHAM
 

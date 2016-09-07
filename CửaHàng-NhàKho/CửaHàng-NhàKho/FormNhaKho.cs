@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
+
 namespace CửaHàng_NhàKho
 {
     public partial class nhakhoFrom : Form
@@ -82,9 +84,25 @@ namespace CửaHàng_NhàKho
                         A.Soluong = reader.GetInt32(2);
                         A.Giaban = Convert.ToSingle(reader.GetValue(3));
                         A.Gianhap = Convert.ToSingle(reader.GetValue(4));
-                        A.Nhasx = reader.GetString(5);
+                        try {
+                            A.Nhasx = reader.GetString(5);
+                        }
+                        catch(System.Data.SqlTypes.SqlNullValueException)
+                        {
+                            A.Nhasx = null;
+                        }
+                        
                         A.TinhTrang = reader.GetInt32(6);
-                        A.Hinhanh = "Resources//Hanghoa//" + A.Mahang + ".jpg";
+                        string hinhanhDir = "Resources//Hanghoa//" + A.Mahang + ".jpg";
+                        string hinhanhDef = "Resources//Hanghoa//Default.jpg";
+                        if (File.Exists(hinhanhDir))
+                        {
+                            A.Hinhanh = hinhanhDir;
+                        }
+                        else
+                        {
+                            A.Hinhanh = hinhanhDef;
+                        }
                         listHang.Add(A);
                     }
                 }
@@ -95,7 +113,7 @@ namespace CửaHàng_NhàKho
             }
             catch (InvalidCastException)
             {
-                MessageBox.Show("Lỗi convert", "Thông báo lỗi");
+               MessageBox.Show("Lỗi convert", "Thông báo lỗi");
             }
             ketnoi.Close();
         }
@@ -129,8 +147,8 @@ namespace CửaHàng_NhàKho
                 newBox.ImageLocation = hh.Hinhanh;
 
                 // thêm điều khiển cho box
-                newBox.MouseHover += new EventHandler(picHang_Hover);
-                newBox.MouseLeave += new EventHandler(picHang_Leave);
+                //newBox.MouseHover += new EventHandler(picHang_Hover);
+                //newBox.MouseLeave += new EventHandler(picHang_Leave);
                 newBox.MouseClick += new MouseEventHandler(picHang_Click);
                 newBox.Tag = hh.Mahang;
                 newBox.Name = hh.Mahang;
