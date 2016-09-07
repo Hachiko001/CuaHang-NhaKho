@@ -269,7 +269,7 @@ namespace CửaHàng_NhàKho
         {
             Form chitiethangForm = new chitiethangForm(this);
             chitiethangForm.Show();
-            capnhatHangHoa();
+            //capnhatHangHoa();
         }
         private void themhangPic_Hover(object sender, EventArgs e)
         {

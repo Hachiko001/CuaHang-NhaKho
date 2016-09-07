@@ -40,8 +40,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.anhhangPic = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.menhgiabanBox = new System.Windows.Forms.TextBox();
-            this.menhgianhapBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.gianhapBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -87,7 +87,7 @@
             this.maBox.Location = new System.Drawing.Point(133, 68);
             this.maBox.Name = "maBox";
             this.maBox.Size = new System.Drawing.Size(169, 23);
-            this.maBox.TabIndex = 3;
+            this.maBox.TabIndex = 2;
             // 
             // label1
             // 
@@ -104,7 +104,7 @@
             this.nhasxBox.Location = new System.Drawing.Point(133, 32);
             this.nhasxBox.Name = "nhasxBox";
             this.nhasxBox.Size = new System.Drawing.Size(169, 20);
-            this.nhasxBox.TabIndex = 7;
+            this.nhasxBox.TabIndex = 3;
             // 
             // nhasxLbl
             // 
@@ -131,7 +131,7 @@
             this.giabanBox.Location = new System.Drawing.Point(83, 55);
             this.giabanBox.Name = "giabanBox";
             this.giabanBox.Size = new System.Drawing.Size(147, 23);
-            this.giabanBox.TabIndex = 11;
+            this.giabanBox.TabIndex = 6;
             // 
             // label3
             // 
@@ -153,8 +153,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.menhgiabanBox);
-            this.groupBox1.Controls.Add(this.menhgianhapBox);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.gianhapBox);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
@@ -168,36 +168,32 @@
             this.groupBox1.Text = "Giá:";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // menhgiabanBox
+            // label7
             // 
-            this.menhgiabanBox.AutoCompleteCustomSource.AddRange(new string[] {
-            "USD",
-            "Euro",
-            "VNĐ"});
-            this.menhgiabanBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.menhgiabanBox.Location = new System.Drawing.Point(236, 55);
-            this.menhgiabanBox.Name = "menhgiabanBox";
-            this.menhgiabanBox.Size = new System.Drawing.Size(66, 23);
-            this.menhgiabanBox.TabIndex = 19;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label7.Location = new System.Drawing.Point(236, 59);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(38, 20);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Vnđ";
             // 
-            // menhgianhapBox
+            // label6
             // 
-            this.menhgianhapBox.AutoCompleteCustomSource.AddRange(new string[] {
-            "USD",
-            "Euro",
-            "VNĐ"});
-            this.menhgianhapBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.menhgianhapBox.Location = new System.Drawing.Point(236, 19);
-            this.menhgianhapBox.Name = "menhgianhapBox";
-            this.menhgianhapBox.Size = new System.Drawing.Size(66, 23);
-            this.menhgianhapBox.TabIndex = 18;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label6.Location = new System.Drawing.Point(236, 23);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Vnđ";
             // 
             // gianhapBox
             // 
             this.gianhapBox.Location = new System.Drawing.Point(83, 20);
             this.gianhapBox.Name = "gianhapBox";
             this.gianhapBox.Size = new System.Drawing.Size(147, 23);
-            this.gianhapBox.TabIndex = 15;
+            this.gianhapBox.TabIndex = 5;
             // 
             // groupBox2
             // 
@@ -231,7 +227,7 @@
             this.soluongBox.Location = new System.Drawing.Point(133, 64);
             this.soluongBox.Name = "soluongBox";
             this.soluongBox.Size = new System.Drawing.Size(69, 20);
-            this.soluongBox.TabIndex = 9;
+            this.soluongBox.TabIndex = 4;
             // 
             // label4
             // 
@@ -294,7 +290,7 @@
             this.motaBox.Multiline = true;
             this.motaBox.Name = "motaBox";
             this.motaBox.Size = new System.Drawing.Size(254, 50);
-            this.motaBox.TabIndex = 0;
+            this.motaBox.TabIndex = 7;
             // 
             // luuBtn
             // 
@@ -308,6 +304,7 @@
             // 
             // huyBtn
             // 
+            this.huyBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.huyBtn.Location = new System.Drawing.Point(447, 335);
             this.huyBtn.Name = "huyBtn";
             this.huyBtn.Size = new System.Drawing.Size(85, 27);
@@ -363,8 +360,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox anhhangPic;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox menhgiabanBox;
-        private System.Windows.Forms.TextBox menhgianhapBox;
         private System.Windows.Forms.TextBox gianhapBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -377,5 +372,7 @@
         private System.Windows.Forms.Button huyBtn;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown soluongBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }

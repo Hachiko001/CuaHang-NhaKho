@@ -225,7 +225,8 @@ namespace CửaHàng_NhàKho
 
         private void huyBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //if (DialogResult.OK == MessageBox.Show("Bạn muốn thoát?", "Thông báo", MessageBoxButtons.OKCancel)) 
+                this.Close();
         }
     }
 }
