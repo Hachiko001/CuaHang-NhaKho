@@ -17,13 +17,14 @@ namespace CửaHàng_NhàKho
         List<HangHoa> listHang = new List<HangHoa>();
         HangHoa selectedProd;
         string connectStr = null;
-
+        string dbname = null;
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
         PictureBox themHang = new PictureBox();
         public nhakhoFrom(string csdlTen)
         {
             InitializeComponent();
+            dbname = csdlTen;
             connectStr = "Integrated Security=SSPI;Server=" + csdlTen + ";Database=QUAN_LY_CUA_HANG";
         }
 
@@ -267,7 +268,7 @@ namespace CửaHàng_NhàKho
         //----------------------------------- cài đặt cho nút thêm hàng
         private void themhangPic_Click(object sender, EventArgs e)
         {
-            Form chitiethangForm = new chitiethangForm(this);
+            Form chitiethangForm = new chitiethangForm(dbname);
             chitiethangForm.Show();
             //capnhatHangHoa();
         }
@@ -374,13 +375,13 @@ namespace CửaHàng_NhàKho
             }
 
 
-            SqlCommand update = new SqlCommand();
+            SqlCommand update = new SqlCommand("cnsp",ketnoi);
             // câu lệnh cập nhật thông tin mặt hàng
             //update.CommandText = @"UPDATE SANPHAM SET TENSP=N'" + tenTxt.Text + @"',SOLUONG='" + slTxt.Text + @"',GIABAN='" + giabTxt.Text + @"',GIANHAP='" + gianTxt.Text + @"',NHASX=N'" +
             //    nsxTxt.Text + @"' WHERE MASP='" + selectedProd.Mahang + @"';";
-            update.Connection = ketnoi;
+            //update.Connection = ketnoi;
 
-            update.CommandText = "dbo.cnsp";
+            //update.CommandText = "cnsp";
             update.CommandType = CommandType.StoredProcedure;
 
             update.Parameters.Add("@masp", SqlDbType.VarChar, 12);

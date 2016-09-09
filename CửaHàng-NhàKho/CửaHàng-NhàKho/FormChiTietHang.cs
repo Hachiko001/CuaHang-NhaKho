@@ -18,11 +18,16 @@ namespace CửaHàng_NhàKho
         private bool tooltipused = false;
         private ToolTip tooltip = new ToolTip();
         //nhakhoFrom NKForm = new nhakhoFrom();
+        string connectStr = null;
+        
 
-        public chitiethangForm(nhakhoFrom form1)
+        
+        public chitiethangForm(string dbname)
         {
             InitializeComponent();
             //NKForm = form1;
+            connectStr = "Integrated Security=SSPI;Server="+dbname+";Database=QUAN_LY_CUA_HANG";
+
             this.MinimizeBox = false;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -108,8 +113,7 @@ namespace CửaHàng_NhàKho
 
 
             //lưu vào sql server
-            string connectStr = null;
-            connectStr = "Integrated Security=SSPI;Server=GILLET;Database=QUAN_LY_CUA_HANG";
+            
             // Tạo kết nối đến sql server
             SqlConnection ketnoi = new SqlConnection(connectStr);
             try

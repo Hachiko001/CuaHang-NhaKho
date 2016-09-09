@@ -22,3 +22,15 @@ C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng
 C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.Properties.Resources.resources
 C:\Users\nguyenvan\Documents\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csproj.GenerateResource.Cache
 D:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csprojResolveAssemblyReference.cache
+E:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe.config
+E:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.exe
+E:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.pdb
+E:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.exe
+E:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\bin\Debug\CửaHàng-NhàKho.pdb
+E:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csprojResolveAssemblyReference.cache
+E:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.FormDangNhap.resources
+E:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.chitiethangForm.resources
+E:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.cuahangForm.resources
+E:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.nhakhoFrom.resources
+E:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng_NhàKho.Properties.Resources.resources
+E:\GitHub\CuaHang-NhaKho\CửaHàng-NhàKho\CửaHàng-NhàKho\obj\Debug\CửaHàng-NhàKho.csproj.GenerateResource.Cache
